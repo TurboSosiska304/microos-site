@@ -16,7 +16,7 @@ const en = {
   meta: {
     title: "Micro OS — a kernel for small machines",
     description:
-      "A portable C11 kernel for small machines: scheduler, syscall ABI, VFS, MicroFS and a shell on ESP32, bare metal x86-64 in QEMU and as a Linux process. Latest: v0.6.0-rc1.",
+      "A portable C11 kernel for small machines: scheduler, syscall ABI, VFS, MicroFS and a shell on ESP32, bare metal x86-64 in QEMU and as a Linux process. Latest: v0.7.0.",
     ogTitle: "Micro OS — a kernel for small machines",
     ogDescription:
       "One portable C11 kernel. The same scheduler, VFS and shell on an ESP32 board, on bare-metal x86-64 and in a Linux process.",
@@ -41,7 +41,6 @@ const en = {
     stackLabel: "Three ports of one kernel: ESP32, x86-64 and host",
   },
   hero: {
-    statusPre: "pre-release",
     statusStable: "stable",
     statusLicense: "MIT",
     titleA: "A kernel",
@@ -53,7 +52,7 @@ const en = {
     wiki: "Read the wiki",
     facts: [
       { label: "ports", value: "4" },
-      { label: "syscall contract", value: "1.6" },
+      { label: "syscall contract", value: "1.7" },
       { label: "language", value: "C11" },
     ],
     stack: {
@@ -112,7 +111,7 @@ const en = {
     lead: "The same scheduler, syscall ABI, VFS, MicroFS and shell build for a board, for bare metal and for a Linux process. Only the port changes.",
     diagram: {
       kernel: "portable kernel",
-      kernelSub: "plain C11 · contract 1.6",
+      kernelSub: "plain C11 · contract 1.7",
       kernelBody: "boot · sched · ksys · VFS · MicroFS · libc",
       boundary: "kernel/port/*.h",
       portsTitle: "one contract, three backends",
@@ -159,13 +158,13 @@ const en = {
           "page tables",
           "virtio-net",
           "ATA + MBR/GPT",
-          "61 smoke checks",
+          "smoke test",
         ],
         works: [
           "IDT/PIT, VGA text, PS/2 and COM1",
           "MicroFS on a disk that survives a reset",
           "execve, page tables, copy-on-write fork and EFAULT",
-          "eight MOX1 programs in /bin with a libc of their own",
+          "ten C programs in /bin with a libc of their own",
           "ARP/IPv4/ICMP/UDP/TCP, a DNS cache and httpd",
         ],
         limits: [
@@ -238,9 +237,16 @@ const en = {
         planned: false,
       },
       {
+        version: "0.7",
+        title: "Pipes and signals",
+        body: "pipes and dup2, signals with Ctrl+C, envp at the entry, a libc and ten programs in /bin, pipes and redirects (|, >, >>, <, 2>), ls -l with dates and tree.",
+        tag: "stable",
+        planned: false,
+      },
+      {
         version: "1.0",
         title: "The gate",
-        body: "Plan: pipes and signals with a real userland, a higher half, NX and a safe update.",
+        body: "Plan: a higher half, many cores with KERNEL_SMP, a safe update and .mox images on the ESP32.",
         tag: "plan",
         planned: true,
       },
@@ -276,7 +282,7 @@ const en = {
       {
         index: "04",
         title: "MOX1, execve, ring 3, fork",
-        body: "A program is a file: a 32-byte header, code and data. On x86-64 execve builds page tables, enters ring 3 and waits for the exit status; fork copies on write. A fault kills the program, not the shell.",
+        body: "A program is a file: a 32-byte header, code and data. On x86-64 execve builds page tables, enters ring 3 with argv and envp and waits for the exit status; fork copies on write. A fault kills the program, not the shell.",
         tag: "x86-64",
         planned: false,
       },
@@ -327,22 +333,22 @@ const en = {
     cards: [
       {
         phase: "now",
-        title: "v0.6.0-rc1",
-        body: "The release candidate: MicroFS timestamps, writable FAT, mount and fstab, the network on x86-64. A candidate, not a promise of stability.",
-        status: "pre-release",
+        title: "v0.7.0",
+        body: "Stable: pipes and redirects in the shell, signals and Ctrl+C, envp at the entry, a libc, ten C programs in /bin, ls -l and tree.",
+        status: "stable",
         current: true,
       },
       {
-        phase: "next",
-        title: "0.6.0-rc2 → 0.6.0",
-        body: "Fixes found by the checks, then the final of 0.6 if the checks agree. No dates; the tag follows the green tree.",
-        status: "planned",
+        phase: "0.8",
+        title: "Programs on disk",
+        body: "Programs become files on a filesystem instead of blobs in the image, fsck -y repairs FAT, ext2 arrives read-only, and NX/W^X closes writable-executable pages. Planned, no dates.",
+        status: "plan",
         current: false,
       },
       {
-        phase: "0.7",
-        title: "The open roadmap",
-        body: "The next minor takes the open kernel lines: a higher half and NX, pipes and signals with a real userland, a journal or repair for FAT. Design first.",
+        phase: "1.0",
+        title: "The 1.0 gate",
+        body: "A higher half, many cores with KERNEL_SMP, a safe update, and .mox images on the ESP32. Planned, no dates.",
         status: "plan",
         current: false,
       },
@@ -359,21 +365,21 @@ const en = {
   },
   release: {
     kicker: "08 — the release",
-    pre: "pre-release",
     date: "21 Nov 2026",
-    lead: "The candidate of 0.6. One image for the board, one bundle for QEMU — the kernel is the same in both.",
+    lead: "The stable release of 0.7. One image for the board, one bundle for QEMU — the kernel is the same in both.",
     notes: [
-      "MicroFS keeps the times of a change; statx reports them, and a version 1 volume still mounts.",
-      "FAT12/16/32 is read and written, long names included; /etc/fstab and mount/umount are at the console.",
-      "The x86-64 machine has a virtio-net card and its own IPv4/TCP stack.",
+      "The shell has pipes and redirects — |, >, >>, < and 2> — and Ctrl+C sends SIGINT to every stage of the chain.",
+      "A program receives argv and envp, inherits its descriptors and links against a libc; ten C programs live in /bin, from cat and grep to ls and wc.",
+      "Signals (SIGINT, SIGTERM, SIGCHLD), dup2 and an interrupted wait; ls -l prints mode, owner, size and date, and tree draws the levels below.",
     ],
     download: "Download .bin",
     github: "GitHub release",
     assets: [
-      { name: "MicroOS-0.6.0-rc1.bin", note: "the board, one image at 0x0", size: "972 KiB" },
-      { name: "MicroOS-x86_64-0.6.0-rc1.tar.gz", note: "the kernel and loader for QEMU", size: "78 KiB" },
+      { name: "MicroOS-0.7.0.bin", note: "the board, one image at 0x0", size: "981 KiB" },
+      { name: "MicroOS-x86_64-0.7.0.tar.gz", note: "the kernel and loader for QEMU", size: "96 KiB" },
+      { name: "micro_os.bin", note: "the application image alone", size: "917 KiB" },
       { name: "flash.sh", note: "writes the image; NVS and MicroFS stay", size: "2.3 KiB" },
-      { name: "checksums.txt", note: "SHA-256 of every binary", size: "334 B" },
+      { name: "checksums.txt", note: "SHA-256 of every binary", size: "330 B" },
     ],
     flash:
       "flash.sh writes the image at 0x0; NVS and MicroFS stay. The release keeps no executable bit — chmod +x first.",
@@ -404,7 +410,7 @@ const ru: Dictionary = {
   meta: {
     title: "Micro OS — ядро для малых машин",
     description:
-      "Портируемое ядро на C11 для малых машин: планировщик, ABI системных вызовов, VFS, MicroFS и shell на ESP32, на голом x86-64 в QEMU и в процессе Linux. Актуальное: v0.6.0-rc1.",
+      "Портируемое ядро на C11 для малых машин: планировщик, ABI системных вызовов, VFS, MicroFS и shell на ESP32, на голом x86-64 в QEMU и в процессе Linux. Актуальное: v0.7.0.",
     ogTitle: "Micro OS — ядро для малых машин",
     ogDescription:
       "Одно портируемое ядро на C11. Тот же планировщик, VFS и shell на плате ESP32, на голом x86-64 и в процессе Linux.",
@@ -429,7 +435,6 @@ const ru: Dictionary = {
     stackLabel: "Три порта одного ядра: ESP32, x86-64 и host",
   },
   hero: {
-    statusPre: "пре-релиз",
     statusStable: "стабильный",
     statusLicense: "MIT",
     titleA: "Ядро для",
@@ -441,7 +446,7 @@ const ru: Dictionary = {
     wiki: "Открыть вики",
     facts: [
       { label: "порта", value: "4" },
-      { label: "контракт syscall", value: "1.6" },
+      { label: "контракт syscall", value: "1.7" },
       { label: "язык", value: "C11" },
     ],
     stack: {
@@ -500,7 +505,7 @@ const ru: Dictionary = {
     lead: "Тот же планировщик, ABI системных вызовов, VFS, MicroFS и shell собираются для платы, для голого металла и для процесса Linux. Меняется только порт.",
     diagram: {
       kernel: "портируемое ядро",
-      kernelSub: "чистый C11 · контракт 1.6",
+      kernelSub: "чистый C11 · контракт 1.7",
       kernelBody: "boot · sched · ksys · VFS · MicroFS · libc",
       boundary: "kernel/port/*.h",
       portsTitle: "один контракт, три бэкенда",
@@ -547,13 +552,13 @@ const ru: Dictionary = {
           "page tables",
           "virtio-net",
           "ATA + MBR/GPT",
-          "61 smoke-проверка",
+          "smoke-тест",
         ],
         works: [
           "IDT/PIT, текстовый VGA, PS/2 и COM1",
           "MicroFS на диске, который переживает reset",
           "execve, свои page tables, fork с copy-on-write и EFAULT",
-          "восемь программ MOX1 в /bin со своей libc",
+          "десять программ на C в /bin со своей libc",
           "ARP/IPv4/ICMP/UDP/TCP, кэш DNS и httpd",
         ],
         limits: [
@@ -626,9 +631,16 @@ const ru: Dictionary = {
         planned: false,
       },
       {
+        version: "0.7",
+        title: "Пайпы и сигналы",
+        body: "pipes и dup2, сигналы с Ctrl+C, envp на входе, libc и десять программ в /bin, пайпы и редиректы (|, >, >>, <, 2>), ls -l с датами и tree.",
+        tag: "stable",
+        planned: false,
+      },
+      {
         version: "1.0",
         title: "Ворота",
-        body: "План: pipes и сигналы с настоящим userland, higher half, NX и безопасное обновление.",
+        body: "План: higher half, много ядер с KERNEL_SMP, безопасное обновление и образы .mox на ESP32.",
         tag: "план",
         planned: true,
       },
@@ -664,7 +676,7 @@ const ru: Dictionary = {
       {
         index: "04",
         title: "MOX1, execve, ring 3, fork",
-        body: "Программа — это файл: заголовок на 32 байта, код и данные. На x86-64 execve строит page tables, входит в ring 3 и ждёт статус выхода; fork копирует при записи. Падение убивает программу, а не shell.",
+        body: "Программа — это файл: заголовок на 32 байта, код и данные. На x86-64 execve строит page tables, входит в ring 3 с argv и envp и ждёт статус выхода; fork копирует при записи. Падение убивает программу, а не shell.",
         tag: "x86-64",
         planned: false,
       },
@@ -715,22 +727,22 @@ const ru: Dictionary = {
     cards: [
       {
         phase: "сейчас",
-        title: "v0.6.0-rc1",
-        body: "Кандидат релиза: метки времени MicroFS, записываемый FAT, mount и fstab, сеть на x86-64. Кандидат, а не обещание стабильности.",
-        status: "пре-релиз",
+        title: "v0.7.0",
+        body: "Стабильный релиз: пайпы и редиректы в shell, сигналы и Ctrl+C, envp на входе, libc, десять программ на C в /bin, ls -l и tree.",
+        status: "стабильный",
         current: true,
       },
       {
-        phase: "дальше",
-        title: "0.6.0-rc2 → 0.6.0",
-        body: "Исправления, которые найдут проверки, затем финал 0.6, если проверки согласятся. Без дат; тег следует за зелёным деревом.",
+        phase: "0.8",
+        title: "Программы на диске",
+        body: "Программы становятся файлами на файловой системе, а не блобами в образе; fsck -y чинит FAT, ext2 появляется только на чтение, NX/W^X закрывает страницы, доступные на запись и исполнение. План, без дат.",
         status: "план",
         current: false,
       },
       {
-        phase: "0.7",
-        title: "Открытый roadmap",
-        body: "Следующий минор берёт открытые линии ядра: higher half и NX, pipes и сигналы с настоящим userland, журнал или починку для FAT. Сначала дизайн.",
+        phase: "1.0",
+        title: "Ворота 1.0",
+        body: "Higher half, много ядер с KERNEL_SMP, безопасное обновление и образы .mox на ESP32. План, без дат.",
         status: "план",
         current: false,
       },
@@ -747,21 +759,21 @@ const ru: Dictionary = {
   },
   release: {
     kicker: "08 — релиз",
-    pre: "пре-релиз",
     date: "21 ноя 2026",
-    lead: "Кандидат 0.6. Один образ для платы, один архив для QEMU — ядро в них одно и то же.",
+    lead: "Стабильный релиз 0.7. Один образ для платы, один архив для QEMU — ядро в них одно и то же.",
     notes: [
-      "MicroFS хранит время изменения; statx его отдаёт, а том версии 1 всё ещё монтируется.",
-      "FAT12/16/32 читается и пишется, включая длинные имена; /etc/fstab и mount/umount доступны в консоли.",
-      "У машины x86-64 есть карта virtio-net и собственный стек IPv4/TCP.",
+      "В shell есть пайпы и редиректы — |, >, >>, < и 2>, — а Ctrl+C шлёт SIGINT каждой стадии цепочки.",
+      "Программа получает argv и envp, наследует дескрипторы и линкуется с libc; в /bin десять программ на C — от cat и grep до ls и wc.",
+      "Сигналы (SIGINT, SIGTERM, SIGCHLD), dup2 и прерванное ожидание; ls -l печатает режим, владельца, размер и дату, а tree рисует уровни ниже.",
     ],
     download: "Скачать .bin",
     github: "Релиз на GitHub",
     assets: [
-      { name: "MicroOS-0.6.0-rc1.bin", note: "плата, один образ по адресу 0x0", size: "972 КиБ" },
-      { name: "MicroOS-x86_64-0.6.0-rc1.tar.gz", note: "ядро и загрузчик для QEMU", size: "78 КиБ" },
+      { name: "MicroOS-0.7.0.bin", note: "плата, один образ по адресу 0x0", size: "981 КиБ" },
+      { name: "MicroOS-x86_64-0.7.0.tar.gz", note: "ядро и загрузчик для QEMU", size: "96 КиБ" },
+      { name: "micro_os.bin", note: "образ приложения отдельно", size: "917 КиБ" },
       { name: "flash.sh", note: "пишет образ; NVS и MicroFS остаются", size: "2.3 КиБ" },
-      { name: "checksums.txt", note: "SHA-256 каждого бинарника", size: "334 Б" },
+      { name: "checksums.txt", note: "SHA-256 каждого бинарника", size: "330 Б" },
     ],
     flash:
       "flash.sh пишет образ по адресу 0x0; NVS и MicroFS остаются. В релизе нет бита исполнения — сначала chmod +x.",

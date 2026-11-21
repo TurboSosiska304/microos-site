@@ -46,10 +46,8 @@ The theme is separate: every page has a light/dark toggle, saved under
 `microos-theme`, starting from `prefers-color-scheme`. Both choices are applied
 before the first paint by the inline script in `index.html`.
 
-Facts come from the `Micro_OS_p7` worktree at `v0.6.0-rc1` and the published
-release. The page says 61 smoke checks because that is what
-`tools/x86_smoke.py` reports in this tree. “Next” and “plan” are marked as
-such; there are no invented dates.
+Facts come from the `v0.7.0` tree and the published release. “Next” and
+“plan” are marked as such; there are no invented dates.
 
 ## Addresses
 
