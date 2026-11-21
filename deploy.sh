@@ -26,6 +26,9 @@ fi
 
 echo "==> publishing dist/ to $REPO ($BRANCH)"
 cd dist
+# A deploy leaves a repository in dist/ for the force push; a second build
+# must not inherit its branch.
+rm -rf .git
 git init -q
 git checkout -q -b "$BRANCH"
 git add -A
