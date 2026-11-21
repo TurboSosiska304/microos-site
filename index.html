@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Micro OS is a Linux-like kernel for small machines: one portable C11 core, running on an ESP32 board, bare metal in QEMU and as a Linux process."
+    />
+    <meta name="theme-color" content="#07090a" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script>
+      // Apply the saved or system theme before the first paint.
+      (function () {
+        try {
+          var saved = localStorage.getItem("microos-theme");
+          var theme =
+            saved === "light" || saved === "dark"
+              ? saved
+              : window.matchMedia("(prefers-color-scheme: light)").matches
+                ? "light"
+                : "dark";
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.style.colorScheme = theme;
+        } catch (error) {
+          // Storage may be unavailable; the default theme still renders.
+        }
+      })();
+    </script>
+    <title>Micro OS — a kernel for small machines</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
