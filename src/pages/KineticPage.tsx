@@ -182,7 +182,10 @@ export default function KineticPage() {
                 className="flex flex-wrap items-center gap-2"
               >
                 <span className="inline-flex items-center gap-2 rounded-full border border-[color-mix(in_srgb,var(--accent)_45%,transparent)] bg-[color-mix(in_srgb,var(--accent)_10%,transparent)] px-2.5 py-1 font-mono text-[8px] uppercase tracking-[0.12em] text-[var(--accent)] sm:px-3 sm:py-1.5 sm:text-[9.5px] sm:tracking-[0.14em]">
-                  <span className="term-dot" /> {t.hero.statusStable} {version}
+                  <span className="term-dot" /> {t.hero.statusPre} {version}
+                </span>
+                <span className="rounded-full border border-[var(--line)] px-2.5 py-1 font-mono text-[8px] uppercase tracking-[0.12em] text-[var(--muted)] sm:px-3 sm:py-1.5 sm:text-[9.5px] sm:tracking-[0.14em]">
+                  {t.hero.statusStable} {stableVersion}
                 </span>
                 <span className="rounded-full border border-[var(--line)] px-2.5 py-1 font-mono text-[8px] uppercase tracking-[0.12em] text-[var(--muted)] sm:px-3 sm:py-1.5 sm:text-[9.5px] sm:tracking-[0.14em]">
                   {t.hero.statusLicense}
@@ -547,7 +550,7 @@ export default function KineticPage() {
             </Reveal>
 
             <Stagger className="mt-12" gap={0.08}>
-              <ol className="ml-2 border-l border-[var(--line-strong)] xl:ml-0 xl:grid xl:grid-cols-7 xl:border-l-0 xl:border-t">
+              <ol className="ml-2 border-l border-[var(--line-strong)] xl:ml-0 xl:grid xl:grid-cols-8 xl:border-l-0 xl:border-t">
                 {t.timeline.items.map((item) => (
                   <li
                     key={item.version}
@@ -779,7 +782,10 @@ export default function KineticPage() {
                   <SectionKicker>{t.release.kicker}</SectionKicker>
                   <div className="flex items-center gap-2">
                     <span className="inline-flex items-center gap-2 rounded-full border border-[color-mix(in_srgb,var(--accent)_40%,transparent)] px-3 py-1.5 font-mono text-[8.5px] uppercase tracking-[0.12em] text-[var(--accent)]">
-                      <span className="term-dot" /> {t.hero.statusStable}
+                      <span className="term-dot" /> {t.release.pre}
+                    </span>
+                    <span className="rounded-full border border-[var(--line)] px-3 py-1.5 font-mono text-[8.5px] uppercase tracking-[0.12em] text-[var(--muted)]">
+                      {t.release.lastStable}: v{stableVersion}
                     </span>
                     <span className="rounded-full border border-[var(--line)] px-3 py-1.5 font-mono text-[8.5px] uppercase tracking-[0.12em] text-[var(--muted)]">
                       {t.release.date}

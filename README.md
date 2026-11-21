@@ -46,7 +46,7 @@ The theme is separate: every page has a light/dark toggle, saved under
 `microos-theme`, starting from `prefers-color-scheme`. Both choices are applied
 before the first paint by the inline script in `index.html`.
 
-Facts come from the `v0.7.0` tree and the published release. “Next” and
+Facts come from the `v0.8.0-rc1` tree and the published release. “Next” and
 “plan” are marked as such; there are no invented dates.
 
 ## Addresses
