@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 
 const LINES = [
   "microos> uname",
-  "MicroOS 0.8.0-rc1 x86_64 (build ...)",
+  "MicroOS 0.8.0 x86_64 (build ...)",
   "microos> exec hello",
   "PROGRAM: hello from /bin",
   "PROGRAM: cpl 3",

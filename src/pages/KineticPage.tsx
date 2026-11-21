@@ -15,7 +15,6 @@ import {
   WIKI_DEV_URL,
   WIKI_URL,
   kernelContract,
-  stableVersion,
   version,
 } from "../config";
 import { useLocale, type Locale } from "../i18n";
@@ -182,10 +181,7 @@ export default function KineticPage() {
                 className="flex flex-wrap items-center gap-2"
               >
                 <span className="inline-flex items-center gap-2 rounded-full border border-[color-mix(in_srgb,var(--accent)_45%,transparent)] bg-[color-mix(in_srgb,var(--accent)_10%,transparent)] px-2.5 py-1 font-mono text-[8px] uppercase tracking-[0.12em] text-[var(--accent)] sm:px-3 sm:py-1.5 sm:text-[9.5px] sm:tracking-[0.14em]">
-                  <span className="term-dot" /> {t.hero.statusPre} {version}
-                </span>
-                <span className="rounded-full border border-[var(--line)] px-2.5 py-1 font-mono text-[8px] uppercase tracking-[0.12em] text-[var(--muted)] sm:px-3 sm:py-1.5 sm:text-[9.5px] sm:tracking-[0.14em]">
-                  {t.hero.statusStable} {stableVersion}
+                  <span className="term-dot" /> {t.hero.statusStable} {version}
                 </span>
                 <span className="rounded-full border border-[var(--line)] px-2.5 py-1 font-mono text-[8px] uppercase tracking-[0.12em] text-[var(--muted)] sm:px-3 sm:py-1.5 sm:text-[9.5px] sm:tracking-[0.14em]">
                   {t.hero.statusLicense}
@@ -782,10 +778,7 @@ export default function KineticPage() {
                   <SectionKicker>{t.release.kicker}</SectionKicker>
                   <div className="flex items-center gap-2">
                     <span className="inline-flex items-center gap-2 rounded-full border border-[color-mix(in_srgb,var(--accent)_40%,transparent)] px-3 py-1.5 font-mono text-[8.5px] uppercase tracking-[0.12em] text-[var(--accent)]">
-                      <span className="term-dot" /> {t.release.pre}
-                    </span>
-                    <span className="rounded-full border border-[var(--line)] px-3 py-1.5 font-mono text-[8.5px] uppercase tracking-[0.12em] text-[var(--muted)]">
-                      {t.release.lastStable}: v{stableVersion}
+                      <span className="term-dot" /> {t.hero.statusStable}
                     </span>
                     <span className="rounded-full border border-[var(--line)] px-3 py-1.5 font-mono text-[8.5px] uppercase tracking-[0.12em] text-[var(--muted)]">
                       {t.release.date}
@@ -872,7 +865,7 @@ export default function KineticPage() {
                       {t.release.flash}
                     </p>
                     <p className="mt-2 font-mono text-[9px] tracking-[0.03em] text-[var(--faint)]">
-                      {t.release.lastStable}: v{stableVersion} · {t.release.license}: MIT ·{" "}
+                      {t.release.license}: MIT ·{" "}
                       {t.footer.contract} {kernelContract} · {t.release.date}
                     </p>
                   </div>

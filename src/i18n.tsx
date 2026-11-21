@@ -16,7 +16,7 @@ const en = {
   meta: {
     title: "Micro OS — a kernel for small machines",
     description:
-      "A portable C11 kernel for small machines: scheduler, syscall ABI, VFS, MicroFS and a shell on ESP32, bare metal x86-64 in QEMU and as a Linux process. Latest: v0.8.0-rc1.",
+      "A portable C11 kernel for small machines: scheduler, syscall ABI, VFS, MicroFS and a shell on ESP32, bare metal x86-64 in QEMU and as a Linux process. Latest: v0.8.0.",
     ogTitle: "Micro OS — a kernel for small machines",
     ogDescription:
       "One portable C11 kernel. The same scheduler, VFS and shell on an ESP32 board, on bare-metal x86-64 and in a Linux process.",
@@ -41,7 +41,6 @@ const en = {
     stackLabel: "Three ports of one kernel: ESP32, x86-64 and host",
   },
   hero: {
-    statusPre: "pre-release",
     statusStable: "stable",
     statusLicense: "MIT",
     titleA: "A kernel",
@@ -252,13 +251,13 @@ const en = {
         version: "0.8",
         title: "Programs on disk",
         body: "programs from the disk, /proc and /etc on x86-64, fsck fat -y, ext2 read-only, NX/W^X and Xtensa .mox on the ESP32.",
-        tag: "pre-release",
+        tag: "stable",
         planned: false,
       },
       {
         version: "1.0",
         title: "The gate",
-        body: "Plan: a higher half, many cores with KERNEL_SMP, a safe update, the progs partition and mmap on the ESP32.",
+        body: "Plan: a higher half, a safe update with a signature and four weeks of soak. After 1.0: SMP, the progs partition and mmap on the ESP32.",
         tag: "plan",
         planned: true,
       },
@@ -322,7 +321,7 @@ const en = {
       {
         index: "08",
         title: "Many cores",
-        body: "A run queue per core, the allocator, VFS and console safe under two cores, x86-64 AP bring-up, KERNEL_SMP. Planned, not claimed: the design is ADR 0012.",
+        body: "After 1.0: a run queue per core, the allocator, VFS and console safe under two cores, x86-64 AP bring-up, KERNEL_SMP. Planned, not claimed: the design is ADR 0012.",
         tag: "next",
         planned: true,
       },
@@ -345,22 +344,22 @@ const en = {
     cards: [
       {
         phase: "now",
-        title: "v0.8.0-rc1",
-        body: "The release candidate: programs load from disk, fsck -y repairs FAT, ext2 is read-only, NX/W^X is on, and the ESP32 runs Xtensa .mox. Last stable: 0.7.0.",
-        status: "pre-release",
+        title: "v0.8.0",
+        body: "Stable: programs load from disk, fsck fat -y repairs FAT, ext2 is read-only, NX/W^X is on, and the ESP32 runs Xtensa .mox.",
+        status: "stable",
         current: true,
       },
       {
         phase: "next",
-        title: "0.8.0 final",
-        body: "Fixes found by the release candidate, then the final of 0.8 if the checks agree. No new promises, no dates.",
+        title: "0.9.0-rc1",
+        body: "The next candidate: fsck -y for MicroFS, task limits, a frozen ABI and MOX1, a reproducible image and coverage, the docs, and deep sleep, IR and sound on the ESP32. No dates.",
         status: "plan",
         current: false,
       },
       {
         phase: "1.0",
-        title: "The 1.0 gate",
-        body: "A higher half, many cores with KERNEL_SMP, a safe update, the progs partition and mmap on the ESP32. Planned, no dates.",
+        title: "1.0.0",
+        body: "A higher half, a safe update with a signature, and four weeks of soak on the board. After 1.0: SMP (the second core), the progs partition and mmap on the ESP32. Planned, no dates.",
         status: "plan",
         current: false,
       },
@@ -378,8 +377,7 @@ const en = {
   release: {
     kicker: "08 — the release",
     date: "21 Nov 2026",
-    pre: "pre-release",
-    lead: "The first candidate of 0.8. One image for the board, one bundle for QEMU — the kernel is the same in both.",
+    lead: "The stable release of 0.8. One image for the board, one bundle for QEMU — the kernel is the same in both.",
     notes: [
       "Programs on x86-64 load from disk: /bin are files of the MicroFS image, not blobs in the kernel. tree / shows bin/, etc/, proc/ and dev/.",
       "fsck fat -y repairs lost clusters, loops, cross-links, clusters outside the volume, broken long names and a size that disagrees with its chain. ext2 reads read-only.",
@@ -389,15 +387,14 @@ const en = {
     download: "Download .bin",
     github: "GitHub release",
     assets: [
-      { name: "MicroOS-0.8.0-rc1.bin", note: "the board, one image at 0x0", size: "990 KiB" },
-      { name: "MicroOS-x86_64-0.8.0-rc1.tar.gz", note: "the kernel and loader for QEMU", size: "92 KiB" },
+      { name: "MicroOS-0.8.0.bin", note: "the board, one image at 0x0", size: "990 KiB" },
+      { name: "MicroOS-x86_64-0.8.0.tar.gz", note: "the kernel and loader for QEMU", size: "92 KiB" },
       { name: "micro_os.bin", note: "the application image alone", size: "926 KiB" },
       { name: "flash.sh", note: "writes the image; NVS and MicroFS stay", size: "2.3 KiB" },
-      { name: "checksums.txt", note: "SHA-256 of every binary", size: "334 B" },
+      { name: "checksums.txt", note: "SHA-256 of every binary", size: "330 B" },
     ],
     flash:
       "flash.sh writes the image at 0x0; NVS and MicroFS stay. The release keeps no executable bit — chmod +x first.",
-    lastStable: "last stable",
     license: "license",
   },
   footer: {
@@ -424,7 +421,7 @@ const ru: Dictionary = {
   meta: {
     title: "Micro OS — ядро для малых машин",
     description:
-      "Портируемое ядро на C11 для малых машин: планировщик, ABI системных вызовов, VFS, MicroFS и shell на ESP32, на голом x86-64 в QEMU и в процессе Linux. Актуальное: v0.8.0-rc1.",
+      "Портируемое ядро на C11 для малых машин: планировщик, ABI системных вызовов, VFS, MicroFS и shell на ESP32, на голом x86-64 в QEMU и в процессе Linux. Актуальное: v0.8.0.",
     ogTitle: "Micro OS — ядро для малых машин",
     ogDescription:
       "Одно портируемое ядро на C11. Тот же планировщик, VFS и shell на плате ESP32, на голом x86-64 и в процессе Linux.",
@@ -449,7 +446,6 @@ const ru: Dictionary = {
     stackLabel: "Три порта одного ядра: ESP32, x86-64 и host",
   },
   hero: {
-    statusPre: "пре-релиз",
     statusStable: "стабильный",
     statusLicense: "MIT",
     titleA: "Ядро для",
@@ -660,13 +656,13 @@ const ru: Dictionary = {
         version: "0.8",
         title: "Программы на диске",
         body: "программы с диска, /proc и /etc на x86-64, fsck fat -y, ext2 только на чтение, NX/W^X и Xtensa .mox на ESP32.",
-        tag: "пре-релиз",
+        tag: "стабильный",
         planned: false,
       },
       {
         version: "1.0",
         title: "Ворота",
-        body: "План: higher half, много ядер с KERNEL_SMP, безопасное обновление, раздел progs и mmap на ESP32.",
+        body: "План: higher half, безопасное обновление с подписью и четыре недели обкатки. После 1.0: SMP, раздел progs и mmap на ESP32.",
         tag: "план",
         planned: true,
       },
@@ -730,7 +726,7 @@ const ru: Dictionary = {
       {
         index: "08",
         title: "Много ядер",
-        body: "Очередь на каждое ядро, аллокатор, VFS и консоль, безопасные под двумя ядрами, AP bring-up на x86-64, KERNEL_SMP. Запланировано, а не заявлено: дизайн в ADR 0012.",
+        body: "После 1.0: очередь на каждое ядро, аллокатор, VFS и консоль, безопасные под двумя ядрами, AP bring-up на x86-64, KERNEL_SMP. Запланировано, а не заявлено: дизайн в ADR 0012.",
         tag: "дальше",
         planned: true,
       },
@@ -753,22 +749,22 @@ const ru: Dictionary = {
     cards: [
       {
         phase: "сейчас",
-        title: "v0.8.0-rc1",
-        body: "Кандидат релиза: программы грузятся с диска, fsck -y чинит FAT, ext2 только на чтение, NX/W^X включён, ESP32 исполняет Xtensa .mox. Последний стабильный — 0.7.0.",
-        status: "пре-релиз",
+        title: "v0.8.0",
+        body: "Стабильный релиз: программы грузятся с диска, fsck fat -y чинит FAT, ext2 только на чтение, NX/W^X включён, ESP32 исполняет Xtensa .mox.",
+        status: "стабильный",
         current: true,
       },
       {
         phase: "дальше",
-        title: "0.8.0 final",
-        body: "Исправления, которые найдёт кандидат, затем финал 0.8, если проверки согласятся. Без новых обещаний и без дат.",
+        title: "0.9.0-rc1",
+        body: "Следующий кандидат: fsck -y для MicroFS, лимиты задач, заморозка ABI и MOX1, воспроизводимый образ и покрытие, документация, а также deep sleep, ИК и звук на ESP32. Без дат.",
         status: "план",
         current: false,
       },
       {
         phase: "1.0",
-        title: "Ворота 1.0",
-        body: "Higher half, много ядер с KERNEL_SMP, безопасное обновление, раздел progs и mmap на ESP32. План, без дат.",
+        title: "1.0.0",
+        body: "Higher half, безопасное обновление с подписью и четыре недели обкатки на плате. После 1.0: SMP (второе ядро), раздел progs и mmap на ESP32. План, без дат.",
         status: "план",
         current: false,
       },
@@ -786,8 +782,7 @@ const ru: Dictionary = {
   release: {
     kicker: "08 — релиз",
     date: "21 ноя 2026",
-    pre: "пре-релиз",
-    lead: "Первый кандидат 0.8. Один образ для платы, один архив для QEMU — ядро в них одно и то же.",
+    lead: "Стабильный релиз 0.8. Один образ для платы, один архив для QEMU — ядро в них одно и то же.",
     notes: [
       "На x86-64 программы грузятся с диска: /bin — файлы образа MicroFS, а не блобы в ядре. tree / показывает bin/, etc/, proc/ и dev/.",
       "fsck fat -y чинит потерянные кластеры, циклы, cross-link, кластеры вне тома, битые длинные имена и размер, не совпадающий с цепочкой. ext2 читается только на чтение.",
@@ -797,15 +792,14 @@ const ru: Dictionary = {
     download: "Скачать .bin",
     github: "Релиз на GitHub",
     assets: [
-      { name: "MicroOS-0.8.0-rc1.bin", note: "плата, один образ по адресу 0x0", size: "990 КиБ" },
-      { name: "MicroOS-x86_64-0.8.0-rc1.tar.gz", note: "ядро и загрузчик для QEMU", size: "92 КиБ" },
+      { name: "MicroOS-0.8.0.bin", note: "плата, один образ по адресу 0x0", size: "990 КиБ" },
+      { name: "MicroOS-x86_64-0.8.0.tar.gz", note: "ядро и загрузчик для QEMU", size: "92 КиБ" },
       { name: "micro_os.bin", note: "образ приложения отдельно", size: "926 КиБ" },
       { name: "flash.sh", note: "пишет образ; NVS и MicroFS остаются", size: "2.3 КиБ" },
-      { name: "checksums.txt", note: "SHA-256 каждого бинарника", size: "334 Б" },
+      { name: "checksums.txt", note: "SHA-256 каждого бинарника", size: "330 Б" },
     ],
     flash:
       "flash.sh пишет образ по адресу 0x0; NVS и MicroFS остаются. В релизе нет бита исполнения — сначала chmod +x.",
-    lastStable: "последний стабильный релиз",
     license: "лицензия",
   },
   footer: {
