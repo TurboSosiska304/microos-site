@@ -3,9 +3,8 @@
 @theme {
   --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  --font-serif: "Newsreader Variable", "Newsreader", Georgia, serif;
-  --font-display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
-  --font-grotesk: "Space Grotesk Variable", "Space Grotesk", ui-sans-serif, sans-serif;
+  --font-grotesk: "Space Grotesk Variable", "Manrope Variable", "Space Grotesk", ui-sans-serif,
+    system-ui, sans-serif;
 }
 
 :root {
@@ -15,6 +14,7 @@
 html {
   background: var(--page-bg);
   scroll-behavior: smooth;
+  scroll-padding-top: 84px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -131,7 +131,7 @@ body {
   --ink: #f4f2ff;
   --ink-strong: #ffffff;
   --muted: #aca6c6;
-  --faint: #746e90;
+  --faint: #8f89a8;
   --line: rgba(255, 255, 255, 0.12);
   --line-strong: rgba(255, 255, 255, 0.24);
   --accent: #c9ff3f;
@@ -151,7 +151,7 @@ body {
   --ink: #14101f;
   --ink-strong: #07050d;
   --muted: #5d5778;
-  --faint: #918aa9;
+  --faint: #726b8c;
   --line: #ddd6f2;
   --line-strong: #c2b8e6;
   --accent: #6d28d9;
@@ -859,27 +859,20 @@ body {
 }
 
 .kin-stack {
-  perspective: 1100px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 330px;
+  perspective: 1200px;
 }
 
 .kin-stack__inner {
+  position: relative;
+  width: min(92%, 400px);
+  height: 265px;
   transform-style: preserve-3d;
-  transform: rotateX(54deg) rotateZ(-34deg);
-  animation: stack-float 9s ease-in-out infinite alternate;
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.kin-stack:hover .kin-stack__inner {
-  transform: rotateX(46deg) rotateZ(-26deg) translateY(-8px);
-}
-
-@keyframes stack-float {
-  from {
-    translate: 0 0;
-  }
-  to {
-    translate: 0 -14px;
-  }
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .kin-layer {
@@ -889,7 +882,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.18);
   background:
     linear-gradient(140deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.015)),
-    rgba(10, 8, 16, 0.72);
+    rgba(10, 8, 16, 0.82);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.12),
     0 30px 60px -30px rgba(0, 0, 0, 0.9);
@@ -897,21 +890,59 @@ body {
 
 [data-theme="light"] .kin-layer {
   background:
-    linear-gradient(140deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.55)),
-    rgba(244, 241, 255, 0.9);
+    linear-gradient(140deg, rgba(255, 255, 255, 0.97), rgba(255, 255, 255, 0.6)),
+    rgba(244, 241, 255, 0.92);
   border-color: rgba(109, 40, 217, 0.22);
 }
 
-.kin-layer--1 {
-  transform: translateZ(0);
-}
-.kin-layer--2 {
-  transform: translateZ(-34px) translateX(16px) translateY(12px);
-  opacity: 0.8;
-}
+/* The card stays flat and readable; the two layers behind it make the depth. */
+.kin-layer--2,
 .kin-layer--3 {
-  transform: translateZ(-68px) translateX(32px) translateY(24px);
+  display: none;
+  border-radius: 22px;
+}
+
+.kin-layer--1 {
+  z-index: 2;
+}
+
+.kin-layer--2 {
+  z-index: 1;
   opacity: 0.55;
+}
+
+.kin-layer--3 {
+  z-index: 0;
+  opacity: 0.3;
+}
+
+@media (min-width: 1024px) {
+  .kin-stack {
+    height: 400px;
+  }
+
+  .kin-stack__inner {
+    width: min(88%, 380px);
+    height: 285px;
+    transform: rotateY(-7deg) rotateX(2deg);
+  }
+
+  .kin-layer--2,
+  .kin-layer--3 {
+    display: block;
+  }
+
+  .kin-layer--2 {
+    transform: translate3d(16px, 14px, -34px) rotate(-2.5deg);
+  }
+
+  .kin-layer--3 {
+    transform: translate3d(30px, 27px, -70px) rotate(-5deg);
+  }
+
+  .kin-stack:hover .kin-stack__inner {
+    transform: rotateY(0deg) rotateX(0deg) translateY(-4px);
+  }
 }
 
 .kin-arrow {

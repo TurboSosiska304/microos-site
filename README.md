@@ -1,68 +1,95 @@
-# microos-site — three directions for microos.org
+# microos-site — the Micro OS landing page
 
-Concept landing pages for **Micro OS**, a portable kernel for small machines. This
-is a design comparison, not the final site: three single-page directions share
-the same facts and differ in voice, palette and motion.
-
-| Route | Direction | Idea |
-|---|---|---|
-| `/terminal` | Engineering / dark-first | graphite, phosphor green, monospaced labels, a grid, a live console |
-| `/editorial` | Editorial / light-first | warm paper, Instrument Serif, asymmetric grid, a calm magazine story |
-| `/kinetic` | Kinetic / neon | dark gradients, huge Space Grotesk, a tilted 3D port stack, a marquee |
-
-`/` is a small chooser that links to all three.
+The final landing page for **Micro OS**, a portable kernel for small machines.
+It is the kinetic direction chosen from the three concepts, now the home page
+at `/` and at `/kinetic`. `/terminal` and `/editorial` remain in the repository
+as the two losing directions, split out of the main bundle.
 
 ## Stack
 
 - React 19 + TypeScript + Vite
 - Tailwind CSS 4 (`@tailwindcss/vite`)
-- Motion (`framer-motion`) for section reveals, staggered grids, hover/tap and
-  the hero parallax
-- Self-hosted fonts via Fontsource: Inter, Newsreader, Instrument Serif,
-  Space Grotesk, JetBrains Mono
+- Motion (`framer-motion`) for reveals, staggered grids, hover/tap and the hero
+  parallax
+- Self-hosted fonts: Space Grotesk for Latin, Manrope for Cyrillic, JetBrains
+  Mono for code, with Inter, Newsreader and Instrument Serif kept for the two
+  reference directions
 
 ## Run
 
 ```bash
 npm install
 npm run dev -- --host 0.0.0.0 --port 4173
-# http://localhost:4173/terminal
+# http://localhost:4173/kinetic
 ```
 
 ```bash
-npm run build      # typecheck + production build
-npm run typecheck
-npm run preview
+npm run build       # typecheck, Vite build, SPA 404.html
+npm run preview -- --port 4174
+# http://localhost:4174/microos-site/
 ```
 
-## Themes
+Development is served from `/`; the production build uses Vite's `base` of
+`/microos-site/` because the site lives at
+<https://turbososiska304.github.io/microos-site/>.
 
-Every direction has a working light/dark toggle in its header. The choice is
-applied as `data-theme` on `<html>`, saved in `localStorage` under
-`microos-theme`, and the first visit follows `prefers-color-scheme`. Each
-palette is designed for its own theme rather than inverted: the terminal goes
-from phosphor night to a pale workbench; the editorial page from paper to a
-lamp-lit ink; the kinetic page from black neon to lavender daylight.
+## Content and languages
 
-Motion respects `prefers-reduced-motion`: reveals resolve immediately, the
-marquee and blobs stop, and hover transforms are disabled.
+Everything on the final page is in `src/i18n.tsx`: two dictionaries with the
+same shape, `en` and `ru`, and the RU object is typed as the EN object, so a
+missing key is a TypeScript error. The language choice is saved in
+`localStorage` under `microos-lang`; the first visit follows
+`navigator.languages` (ru\* → RU, otherwise EN). `<html lang>` and the meta
+description, OG title and locale follow the choice.
 
-## Content
+The theme is separate: every page has a light/dark toggle, saved under
+`microos-theme`, starting from `prefers-color-scheme`. Both choices are applied
+before the first paint by the inline script in `index.html`.
 
-All copy is based on the Micro OS tree at `v0.6.0-rc1` (the `Micro_OS_p7`
-worktree) and the public GitHub release:
+Facts come from the `Micro_OS_p7` worktree at `v0.6.0-rc1` and the published
+release. The page says 61 smoke checks because that is what
+`tools/x86_smoke.py` reports in this tree. “Next” and “plan” are marked as
+such; there are no invented dates.
 
-- release: <https://github.com/TurboSosiska304/Micro_OS/releases/tag/v0.6.0-rc1>
-- asset names and sizes are the ones published in that release
-- the console transcript is condensed from `docs/wiki/programs.md` and shows
-  the x86-64 port, the only machine that runs MOX1 programs
-- “next” is called out explicitly (many cores / `KERNEL_SMP`) and is not
-  presented as shipped
+## Addresses
 
-The wiki link points at <https://wiki.microos.org>, still a placeholder.
+All public links live in `src/config.ts`. There is no custom domain yet,
+so the defaults are GitHub Pages:
 
-## Notes
+| What | Default |
+|---|---|
+| landing | `https://turbososiska304.github.io/microos-site/` |
+| wiki, latest stable | `https://turbososiska304.github.io/Micro_OS/` |
+| wiki, dev | `https://turbososiska304.github.io/Micro_OS/dev/` |
+| kernel repository | `https://github.com/TurboSosiska304/Micro_OS` |
 
-- The board drawing is an SVG abstraction of the StickC Plus2, not a photo.
-- The site is static; no backend, no analytics.
-- This repository is local-only and has not been pushed.
+When the domain exists, change the constants in `src/config.ts` and Vite's
+`SITE_BASE` to `/`; the canonical, OG tags, robots and sitemap are generated
+from the same file at build time.
+
+## Deploy
+
+The static build is published from `gh-pages` of this repository. Nothing in
+this checkout has been pushed.
+
+```bash
+DEPLOY_REPO=git@github.com:TurboSosiska304/microos-site.git ./deploy.sh
+```
+
+`deploy.sh` runs `npm ci`, builds, and force-pushes `dist/` to the `gh-pages`
+branch. `DEPLOY_BRANCH` overrides the branch. A GitHub Actions workflow in
+`.github/workflows/deploy.yml` does the same on pushes to `main` with
+`peaceiris/actions-gh-pages`; it has not been run.
+
+The build also writes `dist/404.html` (a copy of the SPA entry) so a deep link
+such as `/microos-site/kinetic` boots the router on GitHub Pages.
+
+## What to check
+
+- `npm run build` must pass the type check and the build.
+- Widths 360, 390, 640, 768, 1024 and 1440, in both themes and both languages:
+  no horizontal overflow, no text under the hero card.
+- The hero stack is flat and readable below 1024px; the 3D layers only appear
+  on desktop, and the badges sit in a normal flex row under the card.
+- `prefers-reduced-motion` disables the marquee, the drifting glow and the
+  scroll reveals.

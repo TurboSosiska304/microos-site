@@ -1,5 +1,6 @@
 type BoardGlyphProps = {
   className?: string;
+  label?: string;
 };
 
 /**
@@ -7,14 +8,17 @@ type BoardGlyphProps = {
  * Colours come from the variant palette, so the same drawing belongs to all
  * three directions.
  */
-export function BoardGlyph({ className = "" }: BoardGlyphProps) {
+export function BoardGlyph({
+  className = "",
+  label = "Stylised drawing of the M5Stack StickC Plus2 board",
+}: BoardGlyphProps) {
   return (
     <svg
       className={className}
       viewBox="0 0 440 300"
       fill="none"
       role="img"
-      aria-label="Stylised drawing of the M5Stack StickC Plus2 board"
+      aria-label={label}
     >
       <defs>
         <linearGradient id="board-sheen" x1="0" y1="0" x2="1" y2="1">

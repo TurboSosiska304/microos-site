@@ -1,29 +1,66 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="dark" data-lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
     <meta
       name="description"
-      content="Micro OS is a Linux-like kernel for small machines: one portable C11 core, running on an ESP32 board, bare metal in QEMU and as a Linux process."
+      content="A portable C11 kernel for small machines: scheduler, syscall ABI, VFS, MicroFS and a shell on ESP32, bare metal x86-64 in QEMU and as a Linux process. Latest: v0.6.0-rc1."
     />
-    <meta name="theme-color" content="#07090a" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#060509" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="%SITE_URL%" />
+    <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Micro OS" />
+    <meta property="og:url" content="%SITE_URL%" />
+    <meta property="og:title" content="Micro OS — a kernel for small machines" />
+    <meta
+      property="og:description"
+      content="One portable C11 kernel. The same scheduler, VFS and shell on an ESP32 board, on bare-metal x86-64 and in a Linux process."
+    />
+    <meta property="og:image" content="%OG_IMAGE_URL%" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Micro OS — a kernel for small machines" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="ru_RU" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Micro OS — a kernel for small machines" />
+    <meta
+      name="twitter:description"
+      content="One portable C11 kernel. The same scheduler, VFS and shell on an ESP32 board, on bare-metal x86-64 and in a Linux process."
+    />
+    <meta name="twitter:image" content="%OG_IMAGE_URL%" />
+    <meta name="twitter:image:alt" content="Micro OS — a kernel for small machines" />
+
     <script>
-      // Apply the saved or system theme before the first paint.
+      // Apply the saved (or preferred) theme and language before the first paint.
       (function () {
         try {
-          var saved = localStorage.getItem("microos-theme");
-          var theme =
-            saved === "light" || saved === "dark"
-              ? saved
-              : window.matchMedia("(prefers-color-scheme: light)").matches
-                ? "light"
-                : "dark";
+          var theme = localStorage.getItem("microos-theme");
+          if (theme !== "light" && theme !== "dark") {
+            theme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+          }
           document.documentElement.dataset.theme = theme;
           document.documentElement.style.colorScheme = theme;
+
+          var lang = localStorage.getItem("microos-lang");
+          if (lang !== "en" && lang !== "ru") {
+            var languages = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language];
+            lang = languages.some(function (value) {
+              return value.toLowerCase().indexOf("ru") === 0;
+            })
+              ? "ru"
+              : "en";
+          }
+          document.documentElement.lang = lang;
+          document.documentElement.dataset.lang = lang;
         } catch (error) {
-          // Storage may be unavailable; the default theme still renders.
+          // Storage may be unavailable; the default theme and language still render.
         }
       })();
     </script>

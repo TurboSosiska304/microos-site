@@ -18,7 +18,13 @@ function MoonIcon() {
   );
 }
 
-export function ThemeToggle({ className = "" }: { className?: string }) {
+export function ThemeToggle({
+  className = "",
+  labels,
+}: {
+  className?: string;
+  labels?: { toLight: string; toDark: string };
+}) {
   const { theme, toggle } = useTheme();
   const reduce = useReducedMotion();
   const dark = theme === "dark";
@@ -29,8 +35,12 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
       className={`theme-toggle ${className}`}
       data-mode={theme}
       onClick={toggle}
-      aria-label={dark ? "Switch to the light theme" : "Switch to the dark theme"}
-      title={dark ? "Light theme" : "Dark theme"}
+      aria-label={
+        dark
+          ? (labels?.toLight ?? "Switch to the light theme")
+          : (labels?.toDark ?? "Switch to the dark theme")
+      }
+      title={dark ? (labels?.toLight ?? "Light theme") : (labels?.toDark ?? "Dark theme")}
     >
       <span className="theme-toggle__icon theme-toggle__sun">
         <SunIcon />
