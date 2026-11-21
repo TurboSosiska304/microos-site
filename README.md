@@ -38,8 +38,8 @@ Development is served from `/`; the production build uses Vite's `base` of
 Everything on the final page is in `src/i18n.tsx`: two dictionaries with the
 same shape, `en` and `ru`, and the RU object is typed as the EN object, so a
 missing key is a TypeScript error. The language choice is saved in
-`localStorage` under `microos-lang`; the first visit follows
-`navigator.languages` (ru\* → RU, otherwise EN). `<html lang>` and the meta
+`localStorage` under `microos-lang`. The site always opens in English; only an
+explicit switch to RU is remembered for the next visit. `<html lang>` and the meta
 description, OG title and locale follow the choice.
 
 The theme is separate: every page has a light/dark toggle, saved under

@@ -49,13 +49,8 @@
           document.documentElement.style.colorScheme = theme;
 
           var lang = localStorage.getItem("microos-lang");
-          if (lang !== "en" && lang !== "ru") {
-            var languages = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language];
-            lang = languages.some(function (value) {
-              return value.toLowerCase().indexOf("ru") === 0;
-            })
-              ? "ru"
-              : "en";
+          if (lang !== "ru") {
+            lang = "en";
           }
           document.documentElement.lang = lang;
           document.documentElement.dataset.lang = lang;

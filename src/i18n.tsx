@@ -2,7 +2,7 @@ import {
   createContext,
   useCallback,
   useContext,
-  useEffect,
+  useLayoutEffect,
   useMemo,
   useState,
   type ReactNode,
@@ -801,12 +801,13 @@ function preferredLocale(): Locale {
   if (typeof window === "undefined") return "en";
   try {
     const saved = window.localStorage.getItem(STORAGE_KEY);
-    if (saved === "en" || saved === "ru") return saved;
+    if (saved === "ru" || saved === "en") return saved;
   } catch {
-    // Private mode can refuse storage; the browser language still works.
+    // Private mode can refuse storage; English is the project default.
   }
-  const languages = navigator.languages?.length ? navigator.languages : [navigator.language];
-  return languages.some((language) => language.toLowerCase().startsWith("ru")) ? "ru" : "en";
+  // English is the project's first language. A Russian browser does not
+  // change that: only an explicit choice in the switch does.
+  return "en";
 }
 
 function setMeta(name: string, value: string, property = false) {
@@ -819,7 +820,7 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>(preferredLocale);
   const t = dictionaries[locale];
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.documentElement.lang = locale;
     document.documentElement.dataset.lang = locale;
     document.title = t.meta.title;
