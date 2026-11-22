@@ -3,11 +3,14 @@ import { useEffect, useRef, useState } from "react";
 
 const LINES = [
   "microos> uname",
-  "MicroOS 1.1.2 x86_64 (build ...)",
+  "MicroOS 1.2.0 x86_64 (build ...)",
   "microos> exec hello",
   "PROGRAM: hello from /bin",
   "PROGRAM: cpl 3",
   "PROGRAM: argc 1, argv[0] hello",
+  "microos> exec lua -e 'print(2^10)'",
+  "1024.0",
+  "the program has finished",
   "microos> exec crash",
   "PROGRAM: crash writes to address zero",
   "the program faulted: vector 14 at 0x0000000000000000",

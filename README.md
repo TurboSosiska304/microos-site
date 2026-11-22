@@ -48,7 +48,7 @@ before the first paint by the inline script in `index.html`.
 
 The architecture copy follows ADR 0004: ESP32 and x86-64 are the two machines; `host` is the Linux-process test substrate, not a third machine or a product target.
 
-Facts come from the `v1.0.0` tree and the published release. “Next” and
+Facts come from the `v1.2.0` tree and the published release. “Next” and
 “plan” are marked as such; there are no invented dates.
 
 ## Addresses
