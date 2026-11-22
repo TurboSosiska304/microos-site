@@ -16,10 +16,10 @@ const en = {
   meta: {
     title: "Micro OS — a kernel for small machines",
     description:
-      "A portable C11 kernel for small machines: scheduler, syscall ABI, VFS, MicroFS and a shell on ESP32, bare metal x86-64 in QEMU and as a Linux process. Latest: v0.9.0-rc1.",
+      "A portable C11 kernel for small machines: scheduler, syscall ABI, VFS, MicroFS and a shell on ESP32 and bare-metal x86-64, with a Linux-process test substrate. Latest: v0.9.0-rc1.",
     ogTitle: "Micro OS — a kernel for small machines",
     ogDescription:
-      "One portable C11 kernel. The same scheduler, VFS and shell on an ESP32 board, on bare-metal x86-64 and in a Linux process.",
+      "One portable C11 kernel. The same scheduler, VFS and shell on an ESP32 board and bare-metal x86-64; the Linux process is the test substrate.",
     ogLocale: "en_US",
   },
   nav: {
@@ -38,7 +38,7 @@ const en = {
     themeToLight: "Switch to the light theme",
     themeToDark: "Switch to the dark theme",
     boardAlt: "Stylised drawing of the M5Stack StickC Plus2 board",
-    stackLabel: "Three ports of one kernel: ESP32, x86-64 and host",
+    stackLabel: "Two machines and a test substrate: ESP32, x86-64, host",
   },
   hero: {
     statusPre: "pre-release",
@@ -48,19 +48,19 @@ const en = {
     titlePrefix: "for",
     titleAccent: "small",
     titleB: "machines.",
-    lead: "One portable C11 kernel — scheduler, syscall ABI, VFS, MicroFS and shell — running as firmware on a board, bare metal in QEMU and as a Linux process.",
+    lead: "One portable C11 kernel — scheduler, syscall ABI, VFS, MicroFS and shell — on two machines: firmware on a board, bare metal in QEMU. The Linux process is the test substrate.",
     download: "Download",
     wiki: "Read the wiki",
     facts: [
-      { label: "ports", value: "4" },
+      { label: "machines", value: "2" },
       { label: "syscall contract", value: "1.8" },
-      { label: "language", value: "C11" },
+      { label: "test substrate", value: "host" },
     ],
     stack: {
       kicker: "one kernel",
-      ports: "ESP32 · x86-64 · host",
-      sub: "the same scheduler, VFS and shell",
-      counter: "03/04",
+      ports: "ESP32 · x86-64",
+      sub: "two machines · one test substrate",
+      counter: "02 + host",
       ring: "ring 3",
       exec: "MOX1 · execve",
       bare: "C11 · no libc",
@@ -68,7 +68,8 @@ const en = {
   },
   marquee: [
     "one kernel",
-    "four ports",
+    "two machines",
+    "host substrate",
     "MOX1",
     "ring 3",
     "MicroFS",
@@ -85,8 +86,8 @@ const en = {
     cards: [
       {
         index: "01",
-        title: "Hardware is one port",
-        body: "The board is one port of several, not the project. The kernel lives above kernel/port/*.h; a second machine, x86-64 in QEMU, is the proof that it travels.",
+        title: "Hardware is one machine",
+        body: "The board is one of two machines, not the project. The kernel lives above kernel/port/*.h; x86-64 in QEMU is the proof that it travels.",
       },
       {
         index: "02",
@@ -108,15 +109,15 @@ const en = {
   claim: {
     kicker: "02 — the claim",
     titleA: "One kernel.",
-    titleB: "Three machines.",
-    lead: "The same scheduler, syscall ABI, VFS, MicroFS and shell build for a board, for bare metal and for a Linux process. Only the port changes.",
+    titleB: "Two machines.",
+    lead: "The same scheduler, syscall ABI, VFS, MicroFS and shell build for a board and for bare metal. The Linux process is not a third machine: it is the host substrate where the tests and the simulator run. Only the port changes.",
     diagram: {
       kernel: "portable kernel",
       kernelSub: "plain C11 · contract 1.8",
       kernelBody: "boot · sched · ksys · VFS · MicroFS · libc",
       boundary: "kernel/port/*.h",
-      portsTitle: "one contract, three backends",
-      portSubs: ["ESP-IDF · FreeRTOS", "own loader · ring 3", "Linux process"],
+      portsTitle: "one contract, two machines + host",
+      portSubs: ["ESP-IDF · FreeRTOS", "own loader · ring 3", "host · test substrate"],
       footnote: "plus port_null — not a machine at all: the checks link against it.",
       checked: "checked by make integrity",
     },
@@ -124,8 +125,8 @@ const en = {
   architectures: {
     kicker: "03 — architectures",
     titleA: "The same core,",
-    titleB: "three different machines.",
-    lead: "What sits under the kernel differs. What the kernel promises does not. Each card says what works now and what is still missing, without rounding up.",
+    titleB: "two machines and a test substrate.",
+    lead: "What sits under the kernel differs. ESP32 and x86-64 are the machines; the host is the Linux process where the tests, simulator, sanitizers and coverage run. The third card is the test substrate, not a product target.",
     works: "works now",
     limits: "honest limits",
     cards: [
@@ -181,21 +182,21 @@ const en = {
       },
       {
         id: "host",
-        name: "host",
-        machine: "a Linux process",
+        name: "host — the test substrate",
+        machine: "a Linux process · not a machine",
         stack: "unit tests · simulator · sanitizers",
-        specs: ["ktest", "make sim", "ASan / TSan", "make test-minimal"],
+        specs: ["ktest", "make sim", "ASan / TSan / valgrind", "coverage"],
         works: [
           "unit tests inside a real kernel task (ktest)",
           "the whole system as a process, on a 512 KB volume in a file",
-          "ASan and TSan, and the smoke test of the simulator",
+          "ASan, TSan and valgrind; line coverage of the kernel",
           "the development loop without a board, ESP-IDF or QEMU",
         ],
         limits: [
+          "not a machine and not a product target",
           "no hardware and no real radio",
           "execve answers ENOSYS by design",
           "the host cannot reproduce preemption; TSan is the race check",
-          "not a product machine",
         ],
       },
     ],
@@ -392,7 +393,7 @@ const en = {
       "MicroFS fsck -y repairs a broken volume; task limits cap memory, CPU and descriptors per task.",
       "The ABI, MOX1 and the port contract are written down and frozen by tests; the image reproduces byte-for-byte, and kernel coverage is 82%.",
       "The board sleeps to an alarm and wakes, has an IR transmitter and a sound detector, and a factory reset that writes the defaults of /etc back.",
-      "A 600-second soak on x86-64, the ESP32 and the host (under TSan): zero errors.",
+      "A 600-second soak on x86-64, the ESP32 and the host substrate (under TSan): zero errors.",
     ],
     download: "Download .bin",
     github: "GitHub release",
@@ -409,7 +410,7 @@ const en = {
   },
   footer: {
     tagline:
-      "A Linux-like kernel for small machines. One portable core, a port per machine, and a boundary the build checks.",
+      "A Linux-like kernel for small machines. One portable core, two machines, a test substrate, and a boundary the build checks.",
     project: "Project",
     read: "Read",
     github: "GitHub",
@@ -431,10 +432,10 @@ const ru: Dictionary = {
   meta: {
     title: "Micro OS — ядро для малых машин",
     description:
-      "Портируемое ядро на C11 для малых машин: планировщик, ABI системных вызовов, VFS, MicroFS и shell на ESP32, на голом x86-64 в QEMU и в процессе Linux. Актуальное: v0.9.0-rc1.",
+      "Портируемое ядро на C11 для малых машин: планировщик, ABI системных вызовов, VFS, MicroFS и shell на ESP32 и на голом x86-64; процесс Linux — тестовый субстрат. Актуальное: v0.9.0-rc1.",
     ogTitle: "Micro OS — ядро для малых машин",
     ogDescription:
-      "Одно портируемое ядро на C11. Тот же планировщик, VFS и shell на плате ESP32, на голом x86-64 и в процессе Linux.",
+      "Одно портируемое ядро на C11. Тот же планировщик, VFS и shell на плате ESP32 и на голом x86-64; процесс Linux — субстрат тестов.",
     ogLocale: "ru_RU",
   },
   nav: {
@@ -453,7 +454,7 @@ const ru: Dictionary = {
     themeToLight: "Включить светлую тему",
     themeToDark: "Включить тёмную тему",
     boardAlt: "Стилизованный рисунок платы M5Stack StickC Plus2",
-    stackLabel: "Три порта одного ядра: ESP32, x86-64 и host",
+    stackLabel: "Две машины и субстрат тестов: ESP32, x86-64, host",
   },
   hero: {
     statusPre: "пре-релиз",
@@ -463,19 +464,19 @@ const ru: Dictionary = {
     titlePrefix: "",
     titleAccent: "малых",
     titleB: "машин.",
-    lead: "Одно портируемое ядро на C11 — планировщик, ABI системных вызовов, VFS, MicroFS и shell — в прошивке платы, на голом металле в QEMU и в процессе Linux.",
+    lead: "Одно портируемое ядро на C11 — планировщик, ABI системных вызовов, VFS, MicroFS и shell — на двух машинах: прошивка платы и голый металл в QEMU. Процесс Linux — субстрат тестов.",
     download: "Скачать",
     wiki: "Открыть вики",
     facts: [
-      { label: "порта", value: "4" },
+      { label: "машины", value: "2" },
       { label: "контракт syscall", value: "1.8" },
-      { label: "язык", value: "C11" },
+      { label: "субстрат тестов", value: "host" },
     ],
     stack: {
       kicker: "одно ядро",
-      ports: "ESP32 · x86-64 · host",
-      sub: "тот же планировщик, VFS и shell",
-      counter: "03/04",
+      ports: "ESP32 · x86-64",
+      sub: "две машины · один субстрат тестов",
+      counter: "02 + host",
       ring: "ring 3",
       exec: "MOX1 · execve",
       bare: "C11 · без libc",
@@ -483,7 +484,8 @@ const ru: Dictionary = {
   },
   marquee: [
     "одно ядро",
-    "четыре порта",
+    "две машины",
+    "субстрат тестов",
     "MOX1",
     "ring 3",
     "MicroFS",
@@ -500,8 +502,8 @@ const ru: Dictionary = {
     cards: [
       {
         index: "01",
-        title: "Железо — это порт",
-        body: "Плата — один из портов, а не проект. Ядро живёт над kernel/port/*.h; вторая машина, x86-64 в QEMU, доказывает, что оно переносится.",
+        title: "Железо — одна машина",
+        body: "Плата — одна из двух машин, а не проект. Ядро живёт над kernel/port/*.h; x86-64 в QEMU доказывает, что оно переносится.",
       },
       {
         index: "02",
@@ -523,15 +525,15 @@ const ru: Dictionary = {
   claim: {
     kicker: "02 — утверждение",
     titleA: "Одно ядро.",
-    titleB: "Три машины.",
-    lead: "Тот же планировщик, ABI системных вызовов, VFS, MicroFS и shell собираются для платы, для голого металла и для процесса Linux. Меняется только порт.",
+    titleB: "Две машины.",
+    lead: "Тот же планировщик, ABI системных вызовов, VFS, MicroFS и shell собираются для платы и для голого металла. Процесс Linux — не третья машина, а host-субстрат для тестов и симулятора. Меняется только порт.",
     diagram: {
       kernel: "портируемое ядро",
       kernelSub: "чистый C11 · контракт 1.8",
       kernelBody: "boot · sched · ksys · VFS · MicroFS · libc",
       boundary: "kernel/port/*.h",
-      portsTitle: "один контракт, три бэкенда",
-      portSubs: ["ESP-IDF · FreeRTOS", "свой загрузчик · ring 3", "процесс Linux"],
+      portsTitle: "один контракт, две машины + host",
+      portSubs: ["ESP-IDF · FreeRTOS", "свой загрузчик · ring 3", "host · субстрат тестов"],
       footnote: "плюс port_null — вообще не машина: против него линкуются проверки.",
       checked: "проверяется make integrity",
     },
@@ -539,8 +541,8 @@ const ru: Dictionary = {
   architectures: {
     kicker: "03 — архитектуры",
     titleA: "Одно ядро,",
-    titleB: "три разные машины.",
-    lead: "Под ядром всё разное. Обещания ядра — нет. В каждой карточке честно написано, что уже работает и чего ещё нет.",
+    titleB: "две машины и субстрат тестов.",
+    lead: "Под ядром всё разное. ESP32 и x86-64 — машины; host — процесс Linux, где идут тесты, симулятор, санитайзеры и coverage. Третья карточка — субстрат тестов, а не продуктовая цель.",
     works: "уже работает",
     limits: "честные ограничения",
     cards: [
@@ -596,21 +598,21 @@ const ru: Dictionary = {
       },
       {
         id: "host",
-        name: "host",
-        machine: "процесс Linux",
+        name: "host — субстрат тестов",
+        machine: "процесс Linux · не машина",
         stack: "юнит-тесты · симулятор · санитайзеры",
-        specs: ["ktest", "make sim", "ASan / TSan", "make test-minimal"],
+        specs: ["ktest", "make sim", "ASan / TSan / valgrind", "coverage"],
         works: [
           "юнит-тесты внутри настоящей задачи ядра (ktest)",
           "вся система процессом, на томе 512 КБ в файле",
-          "ASan и TSan, а также smoke-тест симулятора",
+          "ASan, TSan и valgrind; покрытие строк ядра",
           "цикл разработки без платы, ESP-IDF и QEMU",
         ],
         limits: [
+          "не машина и не продуктовая цель",
           "нет железа и настоящего радио",
           "execve отвечает ENOSYS — так задумано",
           "хост не воспроизводит вытеснение; гонки ловит TSan",
-          "это не продуктовая машина",
         ],
       },
     ],
@@ -807,7 +809,7 @@ const ru: Dictionary = {
       "MicroFS fsck -y чинит сломанный том; лимиты задач ограничивают память, CPU и дескрипторы на задачу.",
       "ABI, MOX1 и контракт порта записаны и заморожены тестами; образ воспроизводится байт-в-байт, покрытие ядра — 82 %.",
       "Плата засыпает до будильника и просыпается, у неё есть ИК-передатчик и детектор звука, а factory reset возвращает значения /etc по умолчанию.",
-      "600-секундная кампания на x86-64, ESP32 и host (под TSan): ноль ошибок.",
+      "600-секундная кампания на x86-64, ESP32 и host-субстрате (под TSan): ноль ошибок.",
     ],
     download: "Скачать .bin",
     github: "Релиз на GitHub",
@@ -824,7 +826,7 @@ const ru: Dictionary = {
   },
   footer: {
     tagline:
-      "Linux-подобное ядро для малых машин. Одно портируемое ядро, порт на каждую машину и граница, которую проверяет сборка.",
+      "Linux-подобное ядро для малых машин. Одно портируемое ядро, две машины, субстрат тестов и граница, которую проверяет сборка.",
     project: "Проект",
     read: "Читать",
     github: "GitHub",

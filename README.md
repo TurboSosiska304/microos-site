@@ -46,6 +46,8 @@ The theme is separate: every page has a light/dark toggle, saved under
 `microos-theme`, starting from `prefers-color-scheme`. Both choices are applied
 before the first paint by the inline script in `index.html`.
 
+The architecture copy follows ADR 0004: ESP32 and x86-64 are the two machines; `host` is the Linux-process test substrate, not a third machine or a product target.
+
 Facts come from the `v0.9.0-rc1` tree and the published release. “Next” and
 “plan” are marked as such; there are no invented dates.
 

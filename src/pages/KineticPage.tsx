@@ -366,7 +366,7 @@ export default function KineticPage() {
           </Stagger>
         </section>
 
-        {/* One kernel, three machines */}
+        {/* One kernel, two machines, and the host test substrate */}
         <section
           id="machines"
           className="relative border-y border-[var(--line)] bg-[color-mix(in_srgb,var(--bg-soft)_72%,transparent)]"
