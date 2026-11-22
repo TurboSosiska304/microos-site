@@ -22,14 +22,14 @@ export const RELEASES_URL = `${REPO_URL}/releases`;
 export const DOCS_URL = `${REPO_URL}/tree/mainline/docs`;
 export const LICENSE_URL = `${REPO_URL}/blob/mainline/LICENSE`;
 
-export const RELEASE_TAG = "v1.1.1";
+export const RELEASE_TAG = "v1.1.2";
 export const RELEASE_URL = `${REPO_URL}/releases/tag/${RELEASE_TAG}`;
-export const DOWNLOAD_URL = `${REPO_URL}/releases/download/${RELEASE_TAG}/MicroOS-1.1.1.bin`;
-export const X86_URL = `${REPO_URL}/releases/download/${RELEASE_TAG}/MicroOS-x86_64-1.1.1.tar.gz`;
+export const DOWNLOAD_URL = `${REPO_URL}/releases/download/${RELEASE_TAG}/MicroOS-1.1.2.bin`;
+export const X86_URL = `${REPO_URL}/releases/download/${RELEASE_TAG}/MicroOS-x86_64-1.1.2.tar.gz`;
 
 export const OG_IMAGE_URL = `${SITE_URL}og.png`;
 
-export const version = "1.1.1";
-export const stableVersion = "1.1.1";
+export const version = "1.1.2";
+export const stableVersion = "1.1.2";
 export const releaseDate = "22 Nov 2026";
 export const kernelContract = "1.9";

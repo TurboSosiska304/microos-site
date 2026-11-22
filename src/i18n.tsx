@@ -16,7 +16,7 @@ const en = {
   meta: {
     title: "Micro OS — a kernel for small machines",
     description:
-      "A portable C11 kernel for small machines: scheduler, syscall ABI, VFS, MicroFS and a shell on ESP32 and bare-metal x86-64, with a Linux-process test substrate. Latest: v1.1.1.",
+      "A portable C11 kernel for small machines: scheduler, syscall ABI, VFS, MicroFS and a shell on ESP32 and bare-metal x86-64, with a Linux-process test substrate. Latest: v1.1.2.",
     ogTitle: "Micro OS — a kernel for small machines",
     ogDescription:
       "One portable C11 kernel. The same scheduler, VFS and shell on an ESP32 board and bare-metal x86-64; the Linux process is the test substrate.",
@@ -353,8 +353,8 @@ const en = {
     cards: [
       {
         phase: "now",
-        title: "v1.1.1",
-        body: "The patch of 1.1.0: the filesystem fix of a growing directory, the root and the init protected, and the memory, the stat and the clock of the console.",
+        title: "v1.1.2",
+        body: "The shell patch: ls and tree read a directory without a limit, cd .. and . resolve, the long help is not cut, and the console says what it means.",
         status: "stable",
         current: true,
       },
@@ -396,12 +396,12 @@ const en = {
     download: "Download .bin",
     github: "GitHub release",
     assets: [
-      { name: "MicroOS-1.1.1.bin", note: "the board, one image at 0x0", size: "1043 KiB" },
-      { name: "MicroOS-x86_64-1.1.1.tar.gz", note: "the kernel and loader for QEMU", size: "120 KiB" },
-      { name: "micro_os.bin", note: "the application image alone", size: "979 KiB" },
+      { name: "MicroOS-1.1.2.bin", note: "the board, one image at 0x0", size: "1046 KiB" },
+      { name: "MicroOS-x86_64-1.1.2.tar.gz", note: "the kernel and loader for QEMU", size: "130 KiB" },
+      { name: "micro_os.bin", note: "the application image alone", size: "982 KiB" },
       { name: "progs.bin", note: "the programs of /bin, a partition", size: "132 KiB" },
       { name: "ota_usb.py", note: "an update into the other slot, with a rollback", size: "13 KiB" },
-      { name: "MicroOS-1.1.1.bin.sig", note: "Ed25519 signature of the board image", size: "120 B" },
+      { name: "MicroOS-1.1.2.bin.sig", note: "Ed25519 signature of the board image", size: "120 B" },
       { name: "microos-sign.pub", note: "the public key", size: "65 B" },
       { name: "flash.sh", note: "writes the image; the NVS stays", size: "5.7 KiB" },
       { name: "checksums.txt", note: "SHA-256 of every binary", size: "754 B" },
@@ -434,7 +434,7 @@ const ru: Dictionary = {
   meta: {
     title: "Micro OS — ядро для малых машин",
     description:
-      "Портируемое ядро на C11 для малых машин: планировщик, ABI системных вызовов, VFS, MicroFS и shell на ESP32 и на голом x86-64; процесс Linux — тестовый субстрат. Актуальное: v1.1.1.",
+      "Портируемое ядро на C11 для малых машин: планировщик, ABI системных вызовов, VFS, MicroFS и shell на ESP32 и на голом x86-64; процесс Linux — тестовый субстрат. Актуальное: v1.1.2.",
     ogTitle: "Micro OS — ядро для малых машин",
     ogDescription:
       "Одно портируемое ядро на C11. Тот же планировщик, VFS и shell на плате ESP32 и на голом x86-64; процесс Linux — субстрат тестов.",
@@ -771,8 +771,8 @@ const ru: Dictionary = {
     cards: [
       {
         phase: "сейчас",
-        title: "v1.1.1",
-        body: "Патч 1.1.0: исправление файловой системы для растущего каталога, защита корня и init, память, stat и часы консоли.",
+        title: "v1.1.2",
+        body: "Патч оболочки: ls и tree читают каталог без лимита, cd .. и . работают, длинный help не обрезается, консоль говорит то, что имеет в виду.",
         status: "стабильный",
         current: true,
       },
@@ -814,12 +814,12 @@ const ru: Dictionary = {
     download: "Скачать .bin",
     github: "Релиз на GitHub",
     assets: [
-      { name: "MicroOS-1.1.1.bin", note: "плата, один образ по адресу 0x0", size: "1043 КиБ" },
-      { name: "MicroOS-x86_64-1.1.1.tar.gz", note: "ядро и загрузчик для QEMU", size: "120 КиБ" },
+      { name: "MicroOS-1.1.2.bin", note: "плата, один образ по адресу 0x0", size: "1043 КиБ" },
+      { name: "MicroOS-x86_64-1.1.2.tar.gz", note: "ядро и загрузчик для QEMU", size: "120 КиБ" },
       { name: "micro_os.bin", note: "образ приложения отдельно", size: "979 КиБ" },
       { name: "progs.bin", note: "программы /bin, раздел", size: "132 КиБ" },
       { name: "ota_usb.py", note: "обновление в другой слот, с откатом", size: "13 КиБ" },
-      { name: "MicroOS-1.1.1.bin.sig", note: "подпись Ed25519 образа платы", size: "120 Б" },
+      { name: "MicroOS-1.1.2.bin.sig", note: "подпись Ed25519 образа платы", size: "120 Б" },
       { name: "microos-sign.pub", note: "публичный ключ", size: "65 Б" },
       { name: "flash.sh", note: "пишет образ; NVS остаётся", size: "5.7 КиБ" },
       { name: "checksums.txt", note: "SHA-256 каждого бинарника", size: "754 Б" },
