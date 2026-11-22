@@ -8,6 +8,7 @@ import {
   DOWNLOAD_URL,
   DOCS_URL,
   LICENSE_URL,
+  PROGS_URL,
   RELEASE_TAG,
   RELEASE_URL,
   RELEASES_URL,
@@ -827,6 +828,19 @@ export default function KineticPage() {
                         className="kin-pill kin-pill--ghost group justify-center"
                       >
                         {t.release.github}
+                        <span aria-hidden="true" className="kin-arrow">
+                          ↗
+                        </span>
+                      </motion.a>
+                      <motion.a
+                        href={PROGS_URL}
+                        target="_blank"
+                        rel="noreferrer"
+                        whileHover={reduce ? undefined : { y: -3 }}
+                        whileTap={reduce ? undefined : { scale: 0.97 }}
+                        className="kin-pill kin-pill--ghost group justify-center"
+                      >
+                        {t.release.progs}
                         <span aria-hidden="true" className="kin-arrow">
                           ↗
                         </span>

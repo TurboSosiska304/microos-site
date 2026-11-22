@@ -62,6 +62,7 @@ so the defaults are GitHub Pages:
 | wiki, latest stable | `https://turbososiska304.github.io/Micro_OS/` |
 | wiki, dev | `https://turbososiska304.github.io/Micro_OS/dev/` |
 | kernel repository | `https://github.com/TurboSosiska304/Micro_OS` |
+| programs repository | `https://turbososiska304.github.io/microos-progs/` |
 
 When the domain exists, change the constants in `src/config.ts` and Vite's
 `SITE_BASE` to `/`; the canonical, OG tags, robots and sitemap are generated

@@ -280,7 +280,7 @@ const en = {
       {
         version: "1.2",
         title: "Seen and fed",
-        body: "A real screen on x86-64, a stream and HTTPS, pkg and signed packages, a BIOS ISO, a tar that is the machine, and zlib, sbase, PCRE2 and Lua.",
+        body: "A real screen on x86-64, a stream and HTTPS, pkg and signed packages, a BIOS ISO, a tar that is the machine, sbase as the canonical /bin, and zlib, PCRE2, Lua and bc/dc.",
         tag: "stable",
         planned: false,
       },
@@ -355,6 +355,13 @@ const en = {
         tag: "1.2",
         planned: false,
       },
+      {
+        index: "10",
+        title: "The commands of the machine",
+        body: "The tools of sbase are /bin/cat, grep, head, ls, tail, wc, sort, find, xargs and sed under their own names, and the shell looks a bare name in PATH first; ls --color paints a directory blue and an executable green. bc and dc calculate, Lua runs, and microos-progs publishes them with a signed index.",
+        tag: "1.2",
+        planned: false,
+      },
     ],
   },
   console: {
@@ -382,7 +389,7 @@ const en = {
       {
         phase: "next",
         title: "1.3",
-        body: "The second core: the AP bring-up of x86-64, the local APIC timer, the I/O APIC and the locks of the allocator, the VFS and the console under two cores (ADR 0012). Planned, no dates.",
+        body: "The second core: the AP bring-up of x86-64, the local APIC timer, the I/O APIC and the locks of the allocator, the VFS and the console under two cores (ADR 0012), and the ports that wait for it: SQLite, zstd, file and awk. Planned, no dates.",
         status: "plan",
         current: false,
       },
@@ -412,11 +419,12 @@ const en = {
       "The screen: a linear framebuffer of 1280x800 with 160x50 cells of an 8x16 font, font.line_gap of /etc/font, a colour per cell and the SGR sequences of a terminal; a machine without the interface keeps the text mode of 80x25 (ADR 0023).",
       "The network: a streaming wget with Range resume, pkg over a signed index with an atomic rename, and mbedTLS 3.6.2 with HTTPS, the roots of /etc/ssl/certs.pem and the clock of NTP as part of the trust (ADR 0024).",
       "A BIOS ISO (El Torito) with the root image as a read-only module, and make x86-user: the release tar is unpacked and started, so the artifact a person downloads is the machine that runs (ADR 0026).",
-      "The ports: zlib with /bin/zcat, the ten tools of sbase as /bin/sb-*, PCRE2 as /bin/pcre2grep and Lua 5.4.7 as /bin/lua; an image of a program is now up to 8 MiB.",
-      "The shell fixes of 1.1.2 are inside. The board stays the compatibility port of ADR 0018; the second core is 1.3.0, not this release.",
+      "The ports: the ten tools of sbase are the canonical /bin/cat, grep, head, ls, tail, wc, sort, find, xargs and sed (PATH-first, ls --color), with zlib's /bin/zcat, PCRE2's /bin/pcre2grep, Lua 5.4.7 as /bin/lua and bc/dc 7.2.0 as /bin/bc and /bin/dc; an image of a program is now up to 8 MiB.",
+      "The programs are published in microos-progs, a public repository with a signed index and the key microos-progs.pub. The shell fixes of 1.1.2 are inside. The board stays the compatibility port of ADR 0018; the second core and SQLite, zstd, file and awk are 1.3.0, not this release.",
     ],
     download: "Download .bin",
     github: "GitHub release",
+    progs: "Programs repository",
     // The sizes are placeholders: they are filled from `make bundle` of the
     // 1.2.0 tree, together with the final `dist/` of the release.
     assets: [
@@ -722,7 +730,7 @@ const ru: Dictionary = {
       {
         version: "1.2",
         title: "Видно и можно кормить",
-        body: "Настоящий экран на x86-64, поток и HTTPS, pkg с подписанными пакетами, BIOS ISO, tar, который и есть машина, и zlib, sbase, PCRE2 и Lua.",
+        body: "Настоящий экран на x86-64, поток и HTTPS, pkg с подписанными пакетами, BIOS ISO, tar, который и есть машина, sbase как канонический /bin и zlib, PCRE2, Lua и bc/dc.",
         tag: "стабильный",
         planned: false,
       },
@@ -797,6 +805,13 @@ const ru: Dictionary = {
         tag: "1.2",
         planned: false,
       },
+      {
+        index: "10",
+        title: "Команды машины",
+        body: "Инструменты sbase — это /bin/cat, grep, head, ls, tail, wc, sort, find, xargs и sed под своими именами, а shell ищет голое имя сначала в PATH; ls --color красит каталог синим, исполняемый файл — зелёным. bc и dc считают, Lua исполняет, а microos-progs публикует их с подписанным индексом.",
+        tag: "1.2",
+        planned: false,
+      },
     ],
   },
   console: {
@@ -824,7 +839,7 @@ const ru: Dictionary = {
       {
         phase: "дальше",
         title: "1.3",
-        body: "Второе ядро: AP bring-up на x86-64, local APIC timer, I/O APIC и блокировки аллокатора, VFS и консоли под двумя ядрами (ADR 0012). План, без дат.",
+        body: "Второе ядро: AP bring-up на x86-64, local APIC timer, I/O APIC и блокировки аллокатора, VFS и консоли под двумя ядрами (ADR 0012), и порты, которые его ждут: SQLite, zstd, file и awk. План, без дат.",
         status: "план",
         current: false,
       },
@@ -854,11 +869,12 @@ const ru: Dictionary = {
       "Экран: линейный framebuffer 1280x800, 160x50 ячеек шрифта 8x16, font.line_gap из /etc/font, цвет на ячейку и SGR-последовательности терминала; машина без интерфейса сохраняет текстовый режим 80x25 (ADR 0023).",
       "Сеть: потоковый wget с продолжением по Range, pkg поверх подписанного индекса с атомарным rename и mbedTLS 3.6.2 с HTTPS, корнями /etc/ssl/certs.pem и часами NTP как частью доверия (ADR 0024).",
       "BIOS ISO (El Torito) с корневым образом как read-only модулем и make x86-user: tar релиза распаковывается и запускается, так что скачанный артефакт — это и есть работающая машина (ADR 0026).",
-      "Порты: zlib с /bin/zcat, десять инструментов sbase как /bin/sb-*, PCRE2 как /bin/pcre2grep и Lua 5.4.7 как /bin/lua; образ программы теперь до 8 MiB.",
-      "Внутри — фиксы оболочки из 1.1.2. Плата остаётся compatibility-портом ADR 0018; второе ядро — это 1.3.0, а не этот релиз.",
+      "Порты: десять инструментов sbase — это канонические /bin/cat, grep, head, ls, tail, wc, sort, find, xargs и sed (PATH-first, ls --color), плюс /bin/zcat из zlib, /bin/pcre2grep из PCRE2, Lua 5.4.7 как /bin/lua и bc/dc 7.2.0 как /bin/bc и /bin/dc; образ программы теперь до 8 MiB.",
+      "Программы публикуются в microos-progs — публичном репозитории с подписанным индексом и ключом microos-progs.pub. Внутри — фиксы оболочки из 1.1.2. Плата остаётся compatibility-портом ADR 0018; второе ядро, а также SQLite, zstd, file и awk — это 1.3.0, а не этот релиз.",
     ],
     download: "Скачать .bin",
     github: "Релиз на GitHub",
+    progs: "Репозиторий программ",
     assets: [
       { name: "MicroOS-1.2.0.bin", note: "плата, один образ по адресу 0x0", size: "TBD" },
       { name: "MicroOS-x86_64-1.2.0.tar.gz", note: "вся машина x86-64: ядро, загрузчик, диск и run.sh", size: "TBD" },

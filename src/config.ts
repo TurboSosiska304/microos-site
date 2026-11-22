@@ -21,6 +21,8 @@ export const SITE_REPO_URL = `https://github.com/${GITHUB_USER}/microos-site`;
 export const RELEASES_URL = `${REPO_URL}/releases`;
 export const DOCS_URL = `${REPO_URL}/tree/mainline/docs`;
 export const LICENSE_URL = `${REPO_URL}/blob/mainline/LICENSE`;
+export const PROGS_URL = "https://turbososiska304.github.io/microos-progs/";
+export const PROGS_REPO_URL = `https://github.com/${GITHUB_USER}/microos-progs`;
 
 export const RELEASE_TAG = "v1.2.0";
 export const RELEASE_URL = `${REPO_URL}/releases/tag/${RELEASE_TAG}`;
