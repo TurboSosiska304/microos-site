@@ -397,7 +397,7 @@ const en = {
     github: "GitHub release",
     assets: [
       { name: "MicroOS-1.1.2.bin", note: "the board, one image at 0x0", size: "1046 KiB" },
-      { name: "MicroOS-x86_64-1.1.2.tar.gz", note: "the kernel and loader for QEMU", size: "130 KiB" },
+      { name: "MicroOS-x86_64-1.1.2.tar.gz", note: "the kernel and loader for QEMU", size: "123 KiB" },
       { name: "micro_os.bin", note: "the application image alone", size: "982 KiB" },
       { name: "progs.bin", note: "the programs of /bin, a partition", size: "132 KiB" },
       { name: "ota_usb.py", note: "an update into the other slot, with a rollback", size: "13 KiB" },
