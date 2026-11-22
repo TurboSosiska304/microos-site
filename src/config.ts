@@ -11,7 +11,7 @@ export const GITHUB_HOST = "turbososiska304.github.io";
 export const SITE_BASE = "/microos-site/";
 export const SITE_ORIGIN = `https://${GITHUB_HOST}`;
 export const SITE_URL = `${SITE_ORIGIN}${SITE_BASE}`;
-export const SITE_LASTMOD = "2026-11-21";
+export const SITE_LASTMOD = "2026-11-22";
 
 export const WIKI_URL = `https://${GITHUB_HOST}/Micro_OS/`;
 export const WIKI_DEV_URL = `${WIKI_URL}dev/`;
@@ -22,14 +22,14 @@ export const RELEASES_URL = `${REPO_URL}/releases`;
 export const DOCS_URL = `${REPO_URL}/tree/mainline/docs`;
 export const LICENSE_URL = `${REPO_URL}/blob/mainline/LICENSE`;
 
-export const RELEASE_TAG = "v1.0.0";
+export const RELEASE_TAG = "v1.1.0";
 export const RELEASE_URL = `${REPO_URL}/releases/tag/${RELEASE_TAG}`;
-export const DOWNLOAD_URL = `${REPO_URL}/releases/download/${RELEASE_TAG}/MicroOS-1.0.0.bin`;
-export const X86_URL = `${REPO_URL}/releases/download/${RELEASE_TAG}/MicroOS-x86_64-1.0.0.tar.gz`;
+export const DOWNLOAD_URL = `${REPO_URL}/releases/download/${RELEASE_TAG}/MicroOS-1.1.0.bin`;
+export const X86_URL = `${REPO_URL}/releases/download/${RELEASE_TAG}/MicroOS-x86_64-1.1.0.tar.gz`;
 
 export const OG_IMAGE_URL = `${SITE_URL}og.png`;
 
-export const version = "1.0.0";
-export const stableVersion = "1.0.0";
+export const version = "1.1.0";
+export const stableVersion = "1.1.0";
 export const releaseDate = "22 Nov 2026";
-export const kernelContract = "1.8";
+export const kernelContract = "1.9";

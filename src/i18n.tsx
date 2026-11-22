@@ -16,7 +16,7 @@ const en = {
   meta: {
     title: "Micro OS — a kernel for small machines",
     description:
-      "A portable C11 kernel for small machines: scheduler, syscall ABI, VFS, MicroFS and a shell on ESP32 and bare-metal x86-64, with a Linux-process test substrate. Latest: v1.0.0.",
+      "A portable C11 kernel for small machines: scheduler, syscall ABI, VFS, MicroFS and a shell on ESP32 and bare-metal x86-64, with a Linux-process test substrate. Latest: v1.1.0.",
     ogTitle: "Micro OS — a kernel for small machines",
     ogDescription:
       "One portable C11 kernel. The same scheduler, VFS and shell on an ESP32 board and bare-metal x86-64; the Linux process is the test substrate.",
@@ -353,15 +353,15 @@ const en = {
     cards: [
       {
         phase: "now",
-        title: "v1.0.0",
-        body: "The first major: contracts frozen, two machines, signed images, and 600-second sessions with zero errors.",
+        title: "v1.1.0",
+        body: "The board's last major changes - /etc settings, progs, an update with a rollback - and the first phase of many cores.",
         status: "stable",
         current: true,
       },
       {
         phase: "next",
-        title: "1.0.x",
-        body: "After the gate: a safe update with rollback, SMP, the progs partition and mmap on the ESP32, and /etc settings (K10). Planned, no dates.",
+        title: "1.2",
+        body: "K11: a real screen for x86-64, a linear framebuffer (ADR 0023). K12: a streaming HTTP client, mbedTLS, signed packages and pkg (ADR 0024). Planned, no dates.",
         status: "plan",
         current: false,
       },
@@ -386,26 +386,28 @@ const en = {
   release: {
     kicker: "08 — the release",
     date: "22 Nov 2026",
-    lead: "The first major. One image for the board, one bundle for QEMU — the kernel is the same in both.",
+    lead: "The board's last major changes, the first phase of many cores, and a system a person sets from the console.",
     notes: [
-      "The ABI, MOX1, MicroFS and port contracts are frozen and recorded by tests.",
-      "Two machines: the ESP32 runs programs without an MMU and handles sleep, alarm, IR and sound; x86-64 has the higher half, ring 3, NX/W^X, the network and the disk.",
-      "Signed images: SHA-256 + Ed25519. The x86-64 loader verifies before the first byte; the board checks its app trailer at boot and reports the result — an electronic check, not secure boot.",
-      "600-second sessions on x86-64 and the board, with the host under TSan: zero errors.",
+      "The settings of /etc are files the machine applies at the boot: display, font and console, with config get, set, list and sync.",
+      "Two application slots, an update over USB with a rollback, and progs: /bin is a partition of programs, not blobs of the firmware. A board of 1.0 loses its volume once at the move.",
+      "The first phase of many cores: KERNEL_SMP, a queue per core, the host on two cores, and x86-64 reading the processor list of the ACPI; the APs are the next phase (ADR 0012).",
+      "600-second sessions on x86-64 (twice), the board and the host under TSan: zero errors.",
     ],
     download: "Download .bin",
     github: "GitHub release",
     assets: [
-      { name: "MicroOS-1.0.0.bin", note: "the board, one image at 0x0", size: "1031 KiB" },
-      { name: "MicroOS-x86_64-1.0.0.tar.gz", note: "the kernel and loader for QEMU", size: "108 KiB" },
-      { name: "micro_os.bin", note: "the application image alone", size: "967 KiB" },
-      { name: "MicroOS-1.0.0.bin.sig", note: "Ed25519 signature of the board image", size: "120 B" },
+      { name: "MicroOS-1.1.0.bin", note: "the board, one image at 0x0", size: "1043 KiB" },
+      { name: "MicroOS-x86_64-1.1.0.tar.gz", note: "the kernel and loader for QEMU", size: "120 KiB" },
+      { name: "micro_os.bin", note: "the application image alone", size: "979 KiB" },
+      { name: "progs.bin", note: "the programs of /bin, a partition", size: "132 KiB" },
+      { name: "ota_usb.py", note: "an update into the other slot, with a rollback", size: "13 KiB" },
+      { name: "MicroOS-1.1.0.bin.sig", note: "Ed25519 signature of the board image", size: "120 B" },
       { name: "microos-sign.pub", note: "the public key", size: "65 B" },
-      { name: "flash.sh", note: "writes the image; NVS and MicroFS stay", size: "3.2 KiB" },
-      { name: "checksums.txt", note: "SHA-256 of every binary", size: "678 B" },
+      { name: "flash.sh", note: "writes the image; the NVS stays", size: "5.7 KiB" },
+      { name: "checksums.txt", note: "SHA-256 of every binary", size: "754 B" },
     ],
     flash:
-      "flash.sh writes the image at 0x0; NVS and MicroFS stay. The release keeps no executable bit — chmod +x first.",
+      "flash.sh writes the image at 0x0; the NVS stays. A board of 1.0 loses its MicroFS volume once at the move: back it up, then use --erase-volume or mkfs -y. The release keeps no executable bit — chmod +x first.",
     license: "license",
   },
   footer: {
@@ -432,7 +434,7 @@ const ru: Dictionary = {
   meta: {
     title: "Micro OS — ядро для малых машин",
     description:
-      "Портируемое ядро на C11 для малых машин: планировщик, ABI системных вызовов, VFS, MicroFS и shell на ESP32 и на голом x86-64; процесс Linux — тестовый субстрат. Актуальное: v1.0.0.",
+      "Портируемое ядро на C11 для малых машин: планировщик, ABI системных вызовов, VFS, MicroFS и shell на ESP32 и на голом x86-64; процесс Linux — тестовый субстрат. Актуальное: v1.1.0.",
     ogTitle: "Micro OS — ядро для малых машин",
     ogDescription:
       "Одно портируемое ядро на C11. Тот же планировщик, VFS и shell на плате ESP32 и на голом x86-64; процесс Linux — субстрат тестов.",
@@ -769,15 +771,15 @@ const ru: Dictionary = {
     cards: [
       {
         phase: "сейчас",
-        title: "v1.0.0",
-        body: "Первый мажор: контракты заморожены, две машины, подписанные образы и 600-секундные сессии без ошибок.",
+        title: "v1.1.0",
+        body: "Последние крупные изменения платы — настройки /etc, progs, обновление с откатом — и первая фаза многих ядер.",
         status: "стабильный",
         current: true,
       },
       {
         phase: "дальше",
-        title: "1.0.x",
-        body: "После ворот: безопасное обновление с rollback, SMP, раздел progs и mmap на ESP32, настройки /etc (K10). План, без дат.",
+        title: "1.2",
+        body: "K11: настоящий экран x86-64, линейный framebuffer (ADR 0023). K12: потоковый HTTP, mbedTLS, подписанные пакеты и pkg (ADR 0024). План, без дат.",
         status: "план",
         current: false,
       },
@@ -802,26 +804,28 @@ const ru: Dictionary = {
   release: {
     kicker: "08 — релиз",
     date: "22 ноя 2026",
-    lead: "Первый мажор. Один образ для платы, один архив для QEMU — ядро в них одно и то же.",
+    lead: "Последние крупные изменения платы, первая фаза многих ядер и система, которую человек настраивает с консоли.",
     notes: [
-      "Контракты ABI, MOX1, MicroFS и порта заморожены и записаны тестами.",
-      "Две машины: ESP32 исполняет программы без MMU и умеет сон, будильник, ИК и звук; у x86-64 — higher half, ring 3, NX/W^X, сеть и диск.",
-      "Подписанные образы: SHA-256 + Ed25519. Загрузчик x86-64 проверяет до первого байта; плата сверяет trailer приложения при загрузке и показывает результат — электронная проверка, не secure boot.",
-      "600-секундные сессии на x86-64 и плате, host — под TSan: ноль ошибок.",
+      "Настройки /etc — это файлы, которые машина применяет при загрузке: display, font и console, с config get, set, list и sync.",
+      "Два слота приложения, обновление по USB с откатом и progs: /bin — раздел программ, а не блобы прошивки. Плата 1.0 теряет том один раз при переезде.",
+      "Первая фаза многих ядер: KERNEL_SMP, очередь на ядро, host на двух ядрах и чтение списка процессоров ACPI на x86-64; AP — следующая фаза (ADR 0012).",
+      "600-секундные сессии на x86-64 (дважды), плате и host под TSan: ноль ошибок.",
     ],
     download: "Скачать .bin",
     github: "Релиз на GitHub",
     assets: [
-      { name: "MicroOS-1.0.0.bin", note: "плата, один образ по адресу 0x0", size: "1031 КиБ" },
-      { name: "MicroOS-x86_64-1.0.0.tar.gz", note: "ядро и загрузчик для QEMU", size: "108 КиБ" },
-      { name: "micro_os.bin", note: "образ приложения отдельно", size: "967 КиБ" },
-      { name: "MicroOS-1.0.0.bin.sig", note: "подпись Ed25519 образа платы", size: "120 Б" },
+      { name: "MicroOS-1.1.0.bin", note: "плата, один образ по адресу 0x0", size: "1043 КиБ" },
+      { name: "MicroOS-x86_64-1.1.0.tar.gz", note: "ядро и загрузчик для QEMU", size: "120 КиБ" },
+      { name: "micro_os.bin", note: "образ приложения отдельно", size: "979 КиБ" },
+      { name: "progs.bin", note: "программы /bin, раздел", size: "132 КиБ" },
+      { name: "ota_usb.py", note: "обновление в другой слот, с откатом", size: "13 КиБ" },
+      { name: "MicroOS-1.1.0.bin.sig", note: "подпись Ed25519 образа платы", size: "120 Б" },
       { name: "microos-sign.pub", note: "публичный ключ", size: "65 Б" },
-      { name: "flash.sh", note: "пишет образ; NVS и MicroFS остаются", size: "3.2 КиБ" },
-      { name: "checksums.txt", note: "SHA-256 каждого бинарника", size: "678 Б" },
+      { name: "flash.sh", note: "пишет образ; NVS остаётся", size: "5.7 КиБ" },
+      { name: "checksums.txt", note: "SHA-256 каждого бинарника", size: "754 Б" },
     ],
     flash:
-      "flash.sh пишет образ по адресу 0x0; NVS и MicroFS остаются. В релизе нет бита исполнения — сначала chmod +x.",
+      "flash.sh пишет образ по адресу 0x0; NVS остаётся. Плата 1.0 теряет том MicroFS один раз при переезде: сделайте backup, затем --erase-volume или mkfs -y. В релизе нет бита исполнения — сначала chmod +x.",
     license: "лицензия",
   },
   footer: {
