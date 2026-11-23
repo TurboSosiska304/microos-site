@@ -24,14 +24,14 @@ export const LICENSE_URL = `${REPO_URL}/blob/mainline/LICENSE`;
 export const PROGS_URL = "https://turbososiska304.github.io/microos-progs/";
 export const PROGS_REPO_URL = `https://github.com/${GITHUB_USER}/microos-progs`;
 
-export const RELEASE_TAG = "v1.3.0";
+export const RELEASE_TAG = "v1.4.0";
 export const RELEASE_URL = `${REPO_URL}/releases/tag/${RELEASE_TAG}`;
-export const DOWNLOAD_URL = `${REPO_URL}/releases/download/${RELEASE_TAG}/MicroOS-1.3.0.bin`;
+export const DOWNLOAD_URL = `${REPO_URL}/releases/download/${RELEASE_TAG}/MicroOS-1.4.0.bin`;
 export const X86_URL = `${REPO_URL}/releases/download/${RELEASE_TAG}/MicroOS-x86_64-1.3.0.tar.gz`;
 
 export const OG_IMAGE_URL = `${SITE_URL}og.png`;
 
-export const version = "1.3.0";
-export const stableVersion = "1.3.0";
+export const version = "1.4.0";
+export const stableVersion = "1.4.0";
 export const releaseDate = "23 Nov 2026";
 export const kernelContract = "1.9";
