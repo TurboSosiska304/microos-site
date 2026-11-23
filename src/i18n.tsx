@@ -16,7 +16,7 @@ const en = {
   meta: {
     title: "Micro OS — a kernel for small machines",
     description:
-      "A portable C11 kernel for small machines: scheduler, syscall ABI, VFS, MicroFS and a shell on ESP32 and bare-metal x86-64, with a Linux-process test substrate. Latest: v1.4.0.",
+      "A portable C11 kernel for small machines: scheduler, syscall ABI, VFS, MicroFS and a shell on ESP32 and bare-metal x86-64, with a Linux-process test substrate. Latest: v1.5.0.",
     ogTitle: "Micro OS — a kernel for small machines",
     ogDescription:
       "One portable C11 kernel. The same scheduler, VFS and shell on an ESP32 board and bare-metal x86-64; the Linux process is the test substrate.",
@@ -381,15 +381,15 @@ const en = {
     cards: [
       {
         phase: "now",
-        title: "v1.4.0",
-        body: "A real screen on x86-64, a stream and HTTPS, pkg with signed packages, a BIOS ISO, a tar that is the whole machine, and zlib, sbase, PCRE2 and Lua in /bin. The shell fixes of 1.1.2 are inside.",
+        title: "v1.5.0",
+        body: "A program is a process: fork, execve and waitpid, a pipeline of sixteen stages and xargs -P. A task carries a uid and a gid and the triads of a file are read against them. The VFS gets rmdir and fstat, ext2 gets its repair and the shell its fsck ext2. The screen gets the editor and the file manager. The floating point of a task is saved, and the disk is no longer of the 1990s: ext2 writes at 8.4 MiB/s instead of 1.3.",
         status: "stable",
         current: true,
       },
       {
         phase: "next",
-        title: "1.3",
-        body: "The second core: the AP bring-up of x86-64, the local APIC timer, the I/O APIC and the locks of the allocator, the VFS and the console under two cores (ADR 0012), and the ports that wait for it: SQLite, zstd, file and awk. Planned, no dates.",
+        title: "1.6",
+        body: "The machine in the network and the program in memory: an HTTP server and an update over the network with a rollback, mmap and an execve that does not copy the image twice, bus-master DMA on the disk, and poll. Planned, no dates.",
         status: "plan",
         current: false,
       },
@@ -414,35 +414,32 @@ const en = {
   release: {
     kicker: "08 — the release",
     date: "23 Nov 2026",
-    lead: "A real screen on x86-64, a stream and an installer of signed programs, a bootable ISO, a tar that is the whole machine, and the first ports of other people's programs.",
+    lead: "A program is a process, a task has a user, the filesystem is complete, the screen has programs, and the floating point of a task is saved.",
     notes: [
-      "The screen: a linear framebuffer of 1280x800 with 160x50 cells of an 8x16 font, font.line_gap of /etc/font, a colour per cell and the SGR sequences of a terminal; a machine without the interface keeps the text mode of 80x25 (ADR 0023).",
-      "The network: a streaming wget with Range resume, pkg over a signed index with an atomic rename, and mbedTLS 3.6.2 with HTTPS, the roots of /etc/ssl/certs.pem and the clock of NTP as part of the trust (ADR 0024).",
-      "A BIOS ISO (El Torito) with the root image as a read-only module, and make x86-user: the release tar is unpacked and started, so the artifact a person downloads is the machine that runs (ADR 0026).",
-      "The ports: the ten tools of sbase are the canonical /bin/cat, grep, head, ls, tail, wc, sort, find, xargs and sed (PATH-first, ls --color), with zlib's /bin/zcat, PCRE2's /bin/pcre2grep, Lua 5.4.7 as /bin/lua and bc/dc 7.2.0 as /bin/bc and /bin/dc; an image of a program is now up to 8 MiB.",
-      "The programs are published in microos-progs, a public repository with a signed index and the key microos-progs.pub. The shell fixes of 1.1.2 are inside. The board stays the compatibility port of ADR 0018; the second core and SQLite, zstd, file and awk are 1.3.0, not this release.",
+      "Processes: fork gives a copy-on-write image, execve from a program replaces the image of the caller, waitpid reaps it and -1 means any child; a pipeline holds sixteen stages and xargs -P works (ADR 0005, ADR 0007).",
+      "Users: a task carries a uid and a gid, getuid/geteuid/getgid/setuid/setgid take the numbers 36 to 40, root passes every triad, chown/mount/umount are root's and kill of another uid answers EPERM.",
+      "The filesystem: rename reaches ext2, rmdir is a call of its own (41), fstat (42) answers the mode, the owner and the moments, O_EXCL is a flag; ext2_repair and fsck ext2 put the counters, the bitmaps, the link counts and a lost file right - e2fsck answered exit 4 before and exit 0 after.",
+      "The screen: components/ui (windows, canvas, keyboard), /bin/edit with Ctrl+S and a modal question about an unsaved file, /bin/fm with readdir and unlink, and the arrows of the E0 prefix as keys of the machine (ADR 0030).",
+      "The machine: the switch saves the XMM and x87 state (fxsave/fxrstor), which closes K9; rep insl/outsl and a cache of sixteen sectors take ext2 from 1.34 to 8.40 MiB/s of writing and from 4.70 to 13.80 of reading.",
     ],
     download: "Download .bin",
     github: "GitHub release",
     progs: "Programs repository",
-    // The sizes are placeholders: they are filled from `make bundle` of the
-    // 1.2.0 tree, together with the final `dist/` of the release.
     assets: [
-      { name: "MicroOS-1.4.0.bin", note: "the board, one image at 0x0", size: "1057 KiB" },
-      { name: "MicroOS-x86_64-1.4.0.tar.gz", note: "the whole x86-64 machine: kernel, loader, disk and run.sh", size: "3.6 MiB" },
-      { name: "micro_os.bin", note: "the application image alone", size: "992 KiB" },
+      { name: "MicroOS-1.5.0.bin", note: "the board, one image at 0x0", size: "1059 KiB" },
+      { name: "MicroOS-x86_64-1.5.0.tar.gz", note: "the whole x86-64 machine: kernel, loader, disk and run.sh", size: "3.7 MiB" },
+      { name: "micro_os.bin", note: "the application image alone", size: "995 KiB" },
       { name: "progs.bin", note: "the programs of /bin, a partition", size: "132 KiB" },
       { name: "ota_usb.py", note: "an update into the other slot, with a rollback", size: "13 KiB" },
-      { name: "MicroOS-1.4.0.bin.sig", note: "Ed25519 signature of the board image", size: "120 B" },
+      { name: "MicroOS-1.5.0.bin.sig", note: "Ed25519 signature of the board image", size: "120 B" },
       { name: "microos-sign.pub", note: "the public key", size: "65 B" },
       { name: "flash.sh", note: "writes the image; the NVS stays", size: "5.7 KiB" },
       { name: "checksums.txt", note: "SHA-256 of every binary", size: "754 B" },
     ],
     flash:
-      "flash.sh writes the image at 0x0; the NVS stays. A board of 1.0 loses its MicroFS volume once at the move: back it up, then use --erase-volume or mkfs -y. The x86-64 tar carries the disk and run.sh; the ISO is built with make x86-iso. The release keeps no executable bit — chmod +x first.",
+      "flash.sh writes the image at 0x0; the NVS stays. The x86-64 tar carries the disk and run.sh; the ISO is built with make x86-iso. The release keeps no executable bit — chmod +x first.",
     license: "license",
-  },
-  footer: {
+  },  footer: {
     tagline:
       "A Linux-like kernel for small machines. One portable core, two machines, a test substrate, and a boundary the build checks.",
     project: "Project",
@@ -466,7 +463,7 @@ const ru: Dictionary = {
   meta: {
     title: "Micro OS — ядро для малых машин",
     description:
-      "Портируемое ядро на C11 для малых машин: планировщик, ABI системных вызовов, VFS, MicroFS и shell на ESP32 и на голом x86-64; процесс Linux — тестовый субстрат. Актуальное: v1.4.0.",
+      "Портируемое ядро на C11 для малых машин: планировщик, ABI системных вызовов, VFS, MicroFS и shell на ESP32 и на голом x86-64; процесс Linux — тестовый субстрат. Актуальное: v1.5.0.",
     ogTitle: "Micro OS — ядро для малых машин",
     ogDescription:
       "Одно портируемое ядро на C11. Тот же планировщик, VFS и shell на плате ESP32 и на голом x86-64; процесс Linux — субстрат тестов.",
@@ -831,7 +828,7 @@ const ru: Dictionary = {
     cards: [
       {
         phase: "сейчас",
-        title: "v1.4.0",
+        title: "v1.5.0",
         body: "Настоящий экран на x86-64, поток и HTTPS, pkg с подписанными пакетами, BIOS ISO, tar, который и есть вся машина, и zlib, sbase, PCRE2 и Lua в /bin. Внутри — фиксы оболочки из 1.1.2.",
         status: "стабильный",
         current: true,
@@ -864,24 +861,24 @@ const ru: Dictionary = {
   release: {
     kicker: "08 — релиз",
     date: "23 ноя 2026",
-    lead: "Настоящий экран на x86-64, поток и установщик подписанных программ, загрузочный ISO, tar, который и есть машина, и первые порты чужих программ.",
+    lead: "Программа — это процесс, у задачи есть пользователь, файловая система закончена, у экрана есть программы, а состояние плавающей точки задачи сохраняется.",
     notes: [
-      "Экран: линейный framebuffer 1280x800, 160x50 ячеек шрифта 8x16, font.line_gap из /etc/font, цвет на ячейку и SGR-последовательности терминала; машина без интерфейса сохраняет текстовый режим 80x25 (ADR 0023).",
-      "Сеть: потоковый wget с продолжением по Range, pkg поверх подписанного индекса с атомарным rename и mbedTLS 3.6.2 с HTTPS, корнями /etc/ssl/certs.pem и часами NTP как частью доверия (ADR 0024).",
-      "BIOS ISO (El Torito) с корневым образом как read-only модулем и make x86-user: tar релиза распаковывается и запускается, так что скачанный артефакт — это и есть работающая машина (ADR 0026).",
-      "Порты: десять инструментов sbase — это канонические /bin/cat, grep, head, ls, tail, wc, sort, find, xargs и sed (PATH-first, ls --color), плюс /bin/zcat из zlib, /bin/pcre2grep из PCRE2, Lua 5.4.7 как /bin/lua и bc/dc 7.2.0 как /bin/bc и /bin/dc; образ программы теперь до 8 MiB.",
-      "Программы публикуются в microos-progs — публичном репозитории с подписанным индексом и ключом microos-progs.pub. Внутри — фиксы оболочки из 1.1.2. Плата остаётся compatibility-портом ADR 0018; второе ядро, а также SQLite, zstd, file и awk — это 1.3.0, а не этот релиз.",
+      "Процессы: fork даёт копию образа по COW, execve программы заменяет образ вызывающего, waitpid его reap'ит, а -1 значит «любой ребёнок»; пайплайн держит шестнадцать стадий, xargs -P работает (ADR 0005, ADR 0007).",
+      "Пользователи: у задачи есть uid и gid, getuid/geteuid/getgid/setuid/setgid занимают номера с 36 по 40, root проходит любую триаду, chown/mount/umount — только root, kill чужой задачи отвечает EPERM.",
+      "Файловая система: rename доходит до ext2, rmdir — отдельный вызов (41), fstat (42) отдаёт режим, владельца и моменты, O_EXCL — флаг; ext2_repair и fsck ext2 правят счётчики, битовые карты, ссылки и потерянный файл — e2fsck отвечал exit 4 до и exit 0 после.",
+      "Экран: components/ui (окна, canvas, клавиатура), /bin/edit с Ctrl+S и модальным вопросом о несохранённом, /bin/fm с readdir и unlink, а стрелки префикса E0 стали клавишами машины (ADR 0030).",
+      "Машина: переключение сохраняет состояние XMM и x87 (fxsave/fxrstor), чем закрыт K9; rep insl/outsl и кеш на шестнадцать секторов поднимают ext2 с 1.34 до 8.40 МиБ/с записи и с 4.70 до 13.80 чтения.",
     ],
     download: "Скачать .bin",
     github: "Релиз на GitHub",
     progs: "Репозиторий программ",
     assets: [
-      { name: "MicroOS-1.4.0.bin", note: "плата, один образ по адресу 0x0", size: "1057 KiB" },
-      { name: "MicroOS-x86_64-1.4.0.tar.gz", note: "вся машина x86-64: ядро, загрузчик, диск и run.sh", size: "3.6 MiB" },
+      { name: "MicroOS-1.5.0.bin", note: "плата, один образ по адресу 0x0", size: "1057 KiB" },
+      { name: "MicroOS-x86_64-1.5.0.tar.gz", note: "вся машина x86-64: ядро, загрузчик, диск и run.sh", size: "3.6 MiB" },
       { name: "micro_os.bin", note: "образ приложения отдельно", size: "992 KiB" },
       { name: "progs.bin", note: "программы /bin, раздел", size: "132 KiB" },
       { name: "ota_usb.py", note: "обновление в другой слот, с откатом", size: "13 KiB" },
-      { name: "MicroOS-1.4.0.bin.sig", note: "подпись Ed25519 образа платы", size: "120 B" },
+      { name: "MicroOS-1.5.0.bin.sig", note: "подпись Ed25519 образа платы", size: "120 B" },
       { name: "microos-sign.pub", note: "публичный ключ", size: "65 B" },
       { name: "flash.sh", note: "пишет образ; NVS остаётся", size: "5.7 KiB" },
       { name: "checksums.txt", note: "SHA-256 каждого бинарника", size: "754 B" },
