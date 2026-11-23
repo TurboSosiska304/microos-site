@@ -26,7 +26,10 @@ export const PROGS_REPO_URL = `https://github.com/${GITHUB_USER}/microos-progs`;
 
 export const RELEASE_TAG = "v1.6.0";
 export const RELEASE_URL = `${REPO_URL}/releases/tag/${RELEASE_TAG}`;
-export const DOWNLOAD_URL = `${REPO_URL}/releases/download/${RELEASE_TAG}/MicroOS-1.6.0.bin`;
+// The first image of the release is the bootable CD of the x86-64 machine:
+// a person downloads it, writes it to a stick or a disc and starts the machine
+// of his own. The image of the board is in the list below, where it belongs.
+export const DOWNLOAD_URL = `${REPO_URL}/releases/download/${RELEASE_TAG}/MicroOS-1.6.0.iso`;
 export const X86_URL = `${REPO_URL}/releases/download/${RELEASE_TAG}/MicroOS-x86_64-1.3.0.tar.gz`;
 
 export const OG_IMAGE_URL = `${SITE_URL}og.png`;

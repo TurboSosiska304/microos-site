@@ -423,10 +423,11 @@ const en = {
       "The pipes and the door: a ring of 64 KiB with the wait of the scheduler, and a stdio buffer that exists - 0.20 to 31.25 MiB/s through a pipe, 5.9 s to 0.4 s for a megabyte through cat | wc; syscall and sysret take the call from 0.92 to 0.55 microseconds (ADR 0035).",
       "The network: an HTTP server with ETag, Range and a directory listing, TLS 1.3 on the serving side, and an update over the network with a rollback (ADR 0036); pkg installs from the documented repository on a fresh image again.",
     ],
-    download: "Download .bin",
+    download: "Download ISO",
     github: "GitHub release",
     progs: "Programs repository",
     assets: [
+      { name: "MicroOS-1.6.0.iso", note: "the bootable CD of the x86-64 machine: a stick or a disc", size: "13.2 MiB" },
       { name: "MicroOS-1.6.0.bin", note: "the board, one image at 0x0", size: "1079 KiB" },
       { name: "MicroOS-x86_64-1.6.0.tar.gz", note: "the whole x86-64 machine: kernel, loader, disk and run.sh", size: "3.7 MiB" },
       { name: "micro_os.bin", note: "the application image alone", size: "1015 KiB" },
@@ -438,7 +439,7 @@ const en = {
       { name: "checksums.txt", note: "SHA-256 of every binary", size: "754 B" },
     ],
     flash:
-      "flash.sh writes the image at 0x0; the NVS stays. The x86-64 tar carries the disk and run.sh; the ISO is built with make x86-iso. The release keeps no executable bit — chmod +x first.",
+      "The ISO is the machine on a stick or a disc: write it with dd and start it from the boot menu (a CD is the medium it is built for). The tar unpacks into a directory and its run.sh starts the machine under QEMU. flash.sh writes the image of the board at 0x0 and the NVS stays. The release keeps no executable bit — chmod +x first.",
     license: "license",
   },  footer: {
     tagline:
@@ -871,10 +872,11 @@ const ru: Dictionary = {
       "Пайпы и дверь: кольцо 64 КиБ с ожиданием планировщика и настоящий буфер stdio — 0.20 → 31.25 МиБ/с через пайп, 5.9 с → 0.4 с на мегабайт через cat | wc; syscall и sysret ускоряют вызов с 0.92 до 0.55 микросекунды (ADR 0035).",
       "Сеть: HTTP-сервер с ETag, Range и листингом, TLS 1.3 на стороне сервера и обновление по сети с откатом (ADR 0036); pkg снова ставит пакеты из документированного репозитория на свежем образе.",
     ],
-    download: "Скачать .bin",
+    download: "Скачать ISO",
     github: "Релиз на GitHub",
     progs: "Репозиторий программ",
     assets: [
+      { name: "MicroOS-1.6.0.iso", note: "загрузочный CD машины x86-64: флешка или диск", size: "13.2 MiB" },
       { name: "MicroOS-1.6.0.bin", note: "плата, один образ по адресу 0x0", size: "1057 KiB" },
       { name: "MicroOS-x86_64-1.6.0.tar.gz", note: "вся машина x86-64: ядро, загрузчик, диск и run.sh", size: "3.6 MiB" },
       { name: "micro_os.bin", note: "образ приложения отдельно", size: "992 KiB" },
