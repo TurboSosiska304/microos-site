@@ -16,7 +16,7 @@ const en = {
   meta: {
     title: "Micro OS — a kernel for small machines",
     description:
-      "A portable C11 kernel for small machines: scheduler, syscall ABI, VFS, MicroFS and a shell on ESP32 and bare-metal x86-64, with a Linux-process test substrate. Latest: v1.6.0.",
+      "A portable C11 kernel for small machines: scheduler, syscall ABI, VFS, MicroFS and a shell on ESP32 and bare-metal x86-64, with a Linux-process test substrate. Latest: v1.7.0.",
     ogTitle: "Micro OS — a kernel for small machines",
     ogDescription:
       "One portable C11 kernel. The same scheduler, VFS and shell on an ESP32 board and bare-metal x86-64; the Linux process is the test substrate.",
@@ -381,15 +381,15 @@ const en = {
     cards: [
       {
         phase: "now",
-        title: "v1.6.0",
-        body: "A program maps its memory: mmap, munmap, msync and brk, pages on the fault, an image that is not copied, a guard page. A task has a uid and the console has a login and su. An I/O APIC and an IPI wake the many cores. The disk moves by bus-master DMA behind a cache of half a megabyte: ext2 writes at 14.4 MiB/s and reads at 35.9. The pipes run at 31 MiB/s instead of 0.2, the system call takes syscall and sysret, and the machine serves files over HTTP and TLS and updates itself with a rollback.",
+        title: "v1.7.0",
+        body: "A desktop: a pointer, a window server, an editor and a file manager as its windows, a palette of eight bits a channel. The disk writes ext2 at 136 MiB/s and reads at 117, MicroFS version 3 mounts a volume of 5 GiB in 0.3 s, the library of a program grew setenv, realpath, fscanf, glob and getopt_long, the heap grows through brk, and the clock of the machine is the clock of a person. A laptop of UEFI only starts it from a stick written with dd.",
         status: "stable",
         current: true,
       },
       {
         phase: "next",
-        title: "1.7",
-        body: "The gigabyte a second and a filesystem that does not get in the way: virtio-blk, a block of 4 KiB, runs of blocks and no zeroing of a block that is about to be written, the journal of ext2 and of MicroFS, and the second half of the accounts. Planned, no dates.",
+        title: "1.8",
+        body: "The machine of a person with a laptop: USB (a keyboard of the outside world, a stick as a disk, a telephone as a network), AHCI and NVMe with the rule that a disk this system did not format is read-only, a libc that a program of POSIX compiles against with no port layer, a block of 4 KiB, the terminal, and the accounts of a second half. Planned, no dates.",
         status: "plan",
         current: false,
       },
@@ -427,19 +427,20 @@ const en = {
     github: "GitHub release",
     progs: "Programs repository",
     assets: [
-      { name: "MicroOS-1.6.0.iso", note: "the bootable CD of the x86-64 machine: a stick or a disc", size: "13.2 MiB" },
-      { name: "MicroOS-1.6.0.bin", note: "the board, one image at 0x0", size: "1079 KiB" },
-      { name: "MicroOS-x86_64-1.6.0.tar.gz", note: "the whole x86-64 machine: kernel, loader, disk and run.sh", size: "3.7 MiB" },
+      { name: "MicroOS-1.7.0-uefi.img", note: "the stick of a machine of UEFI only: dd and boot", size: "64 MiB" },
+      { name: "MicroOS-1.7.0.iso", note: "one image for a CD and a stick, a BIOS and a firmware", size: "16.7 MiB" },
+      { name: "MicroOS-1.7.0.bin", note: "the board, one image at 0x0", size: "1079 KiB" },
+      { name: "MicroOS-x86_64-1.7.0.tar.gz", note: "the whole x86-64 machine: kernel, loader, disk and run.sh", size: "3.7 MiB" },
       { name: "micro_os.bin", note: "the application image alone", size: "1015 KiB" },
       { name: "progs.bin", note: "the programs of /bin, a partition", size: "132 KiB" },
       { name: "ota_usb.py", note: "an update into the other slot, with a rollback", size: "13 KiB" },
-      { name: "MicroOS-1.6.0.bin.sig", note: "Ed25519 signature of the board image", size: "120 B" },
+      { name: "MicroOS-1.7.0.bin.sig", note: "Ed25519 signature of the board image", size: "120 B" },
       { name: "microos-sign.pub", note: "the public key", size: "65 B" },
       { name: "flash.sh", note: "writes the image; the NVS stays", size: "5.7 KiB" },
       { name: "checksums.txt", note: "SHA-256 of every binary", size: "754 B" },
     ],
     flash:
-      "The ISO is the machine on a stick or a disc: write it with dd and start it from the boot menu (a CD is the medium it is built for). The tar unpacks into a directory and its run.sh starts the machine under QEMU. flash.sh writes the image of the board at 0x0 and the NVS stays. The release keeps no executable bit — chmod +x first.",
+      "The image of UEFI is the machine on a stick: write it with dd, turn Secure Boot off and start \"UEFI: the stick\" from the menu - a laptop of these years has no BIOS at all. The ISO is the same machine for a CD, for a BIOS and for a stick. The tar unpacks into a directory and its run.sh starts the machine under QEMU. flash.sh writes the board. The tar unpacks into a directory and its run.sh starts the machine under QEMU. flash.sh writes the image of the board at 0x0 and the NVS stays. The release keeps no executable bit — chmod +x first.",
     license: "license",
   },  footer: {
     tagline:
@@ -465,7 +466,7 @@ const ru: Dictionary = {
   meta: {
     title: "Micro OS — ядро для малых машин",
     description:
-      "Портируемое ядро на C11 для малых машин: планировщик, ABI системных вызовов, VFS, MicroFS и shell на ESP32 и на голом x86-64; процесс Linux — тестовый субстрат. Актуальное: v1.6.0.",
+      "Портируемое ядро на C11 для малых машин: планировщик, ABI системных вызовов, VFS, MicroFS и shell на ESP32 и на голом x86-64; процесс Linux — тестовый субстрат. Актуальное: v1.7.0.",
     ogTitle: "Micro OS — ядро для малых машин",
     ogDescription:
       "Одно портируемое ядро на C11. Тот же планировщик, VFS и shell на плате ESP32 и на голом x86-64; процесс Linux — субстрат тестов.",
@@ -830,15 +831,15 @@ const ru: Dictionary = {
     cards: [
       {
         phase: "сейчас",
-        title: "v1.6.0",
-        body: "Программа отображает свою память: mmap, munmap, msync и brk, страницы по фолту, образ без копии, guard page. У задачи есть uid, у консоли — login и su. I/O APIC и IPI будят ядра. Диск идёт bus-master DMA за кешем в полмегабайта: ext2 пишет 14.4 МиБ/с и читает 35.9. Пайпы — 31 МиБ/с вместо 0.2, syscall идёт через syscall/sysret, а машина отдаёт файлы по HTTP и TLS и обновляется по сети с откатом.",
+        title: "v1.7.0",
+        body: "Рабочий стол: указатель, оконный сервер, редактор и файловый менеджер как его окна, палитра по 8 бит на канал. Диск пишет ext2 на 136 МиБ/с и читает на 117, MicroFS версии 3 монтирует том 5 ГиБ за 0.3 с, в библиотеке появились setenv, realpath, fscanf, glob и getopt_long, куча растёт через brk, а часы машины — это часы человека. Ноутбук с одним UEFI запускает её с флешки, записанной dd.",
         status: "стабильный",
         current: true,
       },
       {
         phase: "дальше",
-        title: "1.7",
-        body: "Гигабайт в секунду и файловая система, которая не мешает: virtio-blk, блок 4 КиБ, пачки блоков и никакого обнуления блока перед записью, журнал ext2 и MicroFS и вторая половина аккаунтов. План, без дат.",
+        title: "1.8",
+        body: "Машина человека с ноутбуком: USB (клавиатура внешнего мира, флешка как диск, телефон как сеть), AHCI и NVMe с правилом «диск, который мы не форматировали — только чтение», библиотека, под которую программа POSIX собирается без порт-слоя, блок 4 КиБ, терминал и вторая половина аккаунтов. План, без дат.",
         status: "план",
         current: false,
       },
@@ -876,13 +877,14 @@ const ru: Dictionary = {
     github: "Релиз на GitHub",
     progs: "Репозиторий программ",
     assets: [
-      { name: "MicroOS-1.6.0.iso", note: "загрузочный CD машины x86-64: флешка или диск", size: "13.2 MiB" },
-      { name: "MicroOS-1.6.0.bin", note: "плата, один образ по адресу 0x0", size: "1057 KiB" },
-      { name: "MicroOS-x86_64-1.6.0.tar.gz", note: "вся машина x86-64: ядро, загрузчик, диск и run.sh", size: "3.6 MiB" },
+      { name: "MicroOS-1.7.0-uefi.img", note: "флешка машины с одним UEFI: dd и загрузка", size: "64 MiB" },
+      { name: "MicroOS-1.7.0.iso", note: "один образ для CD и флешки, BIOS и прошивки", size: "16.7 MiB" },
+      { name: "MicroOS-1.7.0.bin", note: "плата, один образ по адресу 0x0", size: "1057 KiB" },
+      { name: "MicroOS-x86_64-1.7.0.tar.gz", note: "вся машина x86-64: ядро, загрузчик, диск и run.sh", size: "3.6 MiB" },
       { name: "micro_os.bin", note: "образ приложения отдельно", size: "992 KiB" },
       { name: "progs.bin", note: "программы /bin, раздел", size: "132 KiB" },
       { name: "ota_usb.py", note: "обновление в другой слот, с откатом", size: "13 KiB" },
-      { name: "MicroOS-1.6.0.bin.sig", note: "подпись Ed25519 образа платы", size: "120 B" },
+      { name: "MicroOS-1.7.0.bin.sig", note: "подпись Ed25519 образа платы", size: "120 B" },
       { name: "microos-sign.pub", note: "публичный ключ", size: "65 B" },
       { name: "flash.sh", note: "пишет образ; NVS остаётся", size: "5.7 KiB" },
       { name: "checksums.txt", note: "SHA-256 каждого бинарника", size: "754 B" },
