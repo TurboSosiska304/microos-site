@@ -99,7 +99,7 @@ export default function KineticPage() {
         {t.ui.skip}
       </a>
 
-      <header className="sticky top-0 z-40 border-b border-[var(--line)] bg-[color-mix(in_srgb,var(--bg)_78%,transparent)] backdrop-blur-xl">
+      <header className="relative z-40 border-b border-[var(--line)] bg-[color-mix(in_srgb,var(--bg)_78%,transparent)] backdrop-blur-xl">
         <div className="mx-auto flex h-[68px] max-w-[1320px] items-center gap-5 px-5 md:px-10">
           <a href="#main" className="group flex shrink-0 items-center gap-2.5">
             <span
