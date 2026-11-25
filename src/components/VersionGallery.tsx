@@ -4,7 +4,7 @@ import { versions, type VersionEntry } from "../gallery";
 import { useLocale } from "../i18n";
 
 function VersionCard({ entry }: { entry: VersionEntry }) {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
   const stable = entry.status === "stable";
 
   return (
@@ -59,17 +59,29 @@ function VersionCard({ entry }: { entry: VersionEntry }) {
           </p>
         )}
 
+        <p className="mt-3 text-[12.5px] leading-[1.6] text-[var(--muted)]">
+          {locale === "ru" ? entry.summary.ru : entry.summary.en}
+        </p>
+
         <div className="flex-1" />
-        <div className="border-t border-[var(--line)] pt-4">
-          <p className="font-mono text-[9px] leading-relaxed tracking-[0.03em] text-[var(--faint)]">
-            {entry.artNote
-              ? `${t.gallery.artworkLabel}: ${entry.artNote}`
-              : t.gallery.plannedNote}
-          </p>
-          <p className="mt-1 font-mono text-[9px] leading-relaxed tracking-[0.03em] text-[var(--faint)]">
-            {t.gallery.releaseLabel}: {entry.date || "—"}
-          </p>
-        </div>
+        {(entry.artNote || entry.date) && (
+          <div className="border-t border-[var(--line)] pt-4">
+            {entry.artNote && (
+              <p className="font-mono text-[9px] leading-relaxed tracking-[0.03em] text-[var(--faint)]">
+                {t.gallery.artworkLabel}: {entry.artNote}
+              </p>
+            )}
+            {entry.date && (
+              <p
+                className={`font-mono text-[9px] leading-relaxed tracking-[0.03em] text-[var(--faint)] ${
+                  entry.artNote ? "mt-1" : ""
+                }`}
+              >
+                {t.gallery.releaseLabel}: {entry.date}
+              </p>
+            )}
+          </div>
+        )}
       </div>
     </article>
   );

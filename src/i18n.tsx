@@ -61,6 +61,7 @@ const en = {
       title: "Composition VII, 1913",
       caption: "Wassily Kandinsky · public domain",
       note: "The painting that names 2.0: a dozen shapes that a person reads as one whole.",
+      open: "Open the version gallery",
       link: "Wikimedia Commons",
       linkUrl:
         "https://commons.wikimedia.org/wiki/File:Vassily_Kandinsky,_1913_-_Composition_7.jpg",
@@ -553,7 +554,6 @@ const en = {
     teaserLink: "Open the gallery",
     artworkLabel: "Artwork",
     releaseLabel: "Release",
-    plannedNote: "Artwork: image not chosen yet",
     source: "wikimedia commons",
   },
   footer: {
@@ -625,6 +625,7 @@ const ru: Dictionary = {
       title: "Композиция VII, 1913",
       caption: "Василий Кандинский · общественное достояние",
       note: "Картина, давшая имя 2.0: десяток форм, которые человек читает как одно целое.",
+      open: "Открыть галерею версий",
       link: "Викисклад",
       linkUrl:
         "https://commons.wikimedia.org/wiki/File:Vassily_Kandinsky,_1913_-_Composition_7.jpg",
@@ -1117,7 +1118,6 @@ const ru: Dictionary = {
     teaserLink: "Открыть галерею",
     artworkLabel: "Картина",
     releaseLabel: "Релиз",
-    plannedNote: "Картина: изображение ещё не выбрано",
     source: "wikimedia commons",
   },
   footer: {

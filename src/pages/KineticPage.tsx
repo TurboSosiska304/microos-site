@@ -178,16 +178,25 @@ export default function KineticPage() {
               aria-label={t.hero.art.alt}
             >
               <figure className="kin-art">
-                <div className="kin-art__frame">
-                  <img
-                    src={compositionVii}
-                    alt={t.hero.art.alt}
-                    width={1000}
-                    height={657}
-                    decoding="async"
-                    className="kin-art__img"
-                  />
-                </div>
+                <a
+                  href={GALLERY_URL}
+                  aria-label={t.hero.art.open}
+                  className="block rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]"
+                >
+                  <div className="kin-art__frame">
+                    <img
+                      src={compositionVii}
+                      alt={t.hero.art.alt}
+                      width={1000}
+                      height={657}
+                      decoding="async"
+                      className="kin-art__img"
+                    />
+                  </div>
+                  <span className="mt-2 block text-[8.5px] uppercase tracking-[0.12em] text-[var(--accent)]">
+                    {t.hero.art.open} ↗
+                  </span>
+                </a>
                 <figcaption className="mt-4">
                   <div className="flex items-start justify-between gap-3">
                     <p className="font-grotesk text-[15px] font-semibold leading-tight text-[var(--ink-strong)]">
@@ -455,72 +464,95 @@ export default function KineticPage() {
             </Reveal>
 
             <Stagger className="mt-12 space-y-10" gap={0.08}>
-              {t.timeline.groups.map((group) => (
-                <StaggerItem key={group.id}>
-                  <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-[var(--line-strong)] pb-2.5">
-                    <h3 className="font-grotesk text-[15px] font-semibold uppercase tracking-[-0.01em] text-[var(--ink-strong)]">
-                      {group.label}
-                    </h3>
-                    <p className="max-w-sm text-[11.5px] leading-snug text-[var(--muted)]">
-                      {group.note}
-                    </p>
-                  </div>
-                  {group.items.length > 0 ? (
-                    <ol className="mt-1">
-                      {group.items.map((item) => {
-                        const current = item.version === "2.0";
-                        return (
-                          <li
-                            key={item.version}
-                            className={`relative flex gap-x-3 border-b border-[var(--line)] py-3 pl-4 last:border-b-0 sm:gap-x-4 ${
-                              current ? "border-l-2 border-l-[var(--accent)] pl-3" : ""
-                            }`}
+              {t.timeline.groups.map((group, index) => {
+                const first = group.items[0]?.version;
+                const last = group.items[group.items.length - 1]?.version;
+                const range = first && last ? `${first}–${last}` : "—";
+                // The current major and the last group stay open; the rest fold.
+                const isOpen = group.id === "2x" || index === t.timeline.groups.length - 1;
+                return (
+                  <StaggerItem key={group.id}>
+                    <details className="group/timeline" open={isOpen}>
+                      <summary className="flex cursor-pointer list-none flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-[var(--line-strong)] pb-2.5 [&::-webkit-details-marker]:hidden">
+                        <span className="flex items-center gap-3">
+                          <span
+                            aria-hidden="true"
+                            className="font-mono text-[11px] text-[var(--accent)]"
                           >
-                            {current && (
-                              <span
-                                aria-hidden="true"
-                                className="absolute -left-1 top-4 h-2.5 w-2.5 rounded-full bg-[var(--accent)] shadow-[0_0_12px_var(--accent)]"
-                              />
-                            )}
-                            <span className="w-14 shrink-0 font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--accent)]">
-                              v{item.version}
-                            </span>
-                            <div className="min-w-0 flex-1">
-                              <div className="flex items-start justify-between gap-3">
-                                <h4 className="font-grotesk text-[14px] font-semibold leading-snug text-[var(--ink-strong)]">
-                                  {item.title}
-                                </h4>
-                                <span
-                                  className={`shrink-0 rounded-full border px-2 py-0.5 font-mono text-[8px] uppercase tracking-[0.1em] text-[var(--muted)] ${
-                                    item.planned
-                                      ? "border-dashed border-[var(--line-strong)]"
-                                      : "border-[var(--line)]"
-                                  }`}
-                                >
-                                  {item.tag}
+                            <span className="group-open/timeline:hidden">+</span>
+                            <span className="hidden group-open/timeline:inline">−</span>
+                          </span>
+                          <h3 className="font-grotesk text-[15px] font-semibold uppercase tracking-[-0.01em] text-[var(--ink-strong)]">
+                            {group.label}
+                          </h3>
+                        </span>
+                        <span className="flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.1em] text-[var(--faint)]">
+                          <span>{range}</span>
+                          <span aria-hidden="true">·</span>
+                          <span>{group.items.length}</span>
+                        </span>
+                      </summary>
+                      <p className="max-w-sm pt-2.5 text-[11.5px] leading-snug text-[var(--muted)]">
+                        {group.note}
+                      </p>
+                      {group.items.length > 0 ? (
+                        <ol className="mt-1">
+                          {group.items.map((item) => {
+                            const current = item.version === "2.0";
+                            return (
+                              <li
+                                key={item.version}
+                                className={`relative flex gap-x-3 border-b border-[var(--line)] py-3 pl-4 last:border-b-0 sm:gap-x-4 ${
+                                  current ? "border-l-2 border-l-[var(--accent)] pl-3" : ""
+                                }`}
+                              >
+                                {current && (
+                                  <span
+                                    aria-hidden="true"
+                                    className="absolute -left-1 top-4 h-2.5 w-2.5 rounded-full bg-[var(--accent)] shadow-[0_0_12px_var(--accent)]"
+                                  />
+                                )}
+                                <span className="w-14 shrink-0 font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--accent)]">
+                                  v{item.version}
                                 </span>
-                              </div>
-                              <p className="mt-1 line-clamp-2 text-[12px] leading-[1.55] text-[var(--muted)]">
-                                {item.body}
-                              </p>
-                            </div>
-                          </li>
-                        );
-                      })}
-                    </ol>
-                  ) : (
-                    <p className="border-b border-[var(--line)] py-3 text-[12px] leading-relaxed text-[var(--muted)]">
-                      {t.timeline.plannedHint}{" "}
-                      <a
-                        href={GALLERY_URL}
-                        className="font-mono text-[9px] uppercase tracking-[0.1em] text-[var(--accent)] underline decoration-[var(--line-strong)] underline-offset-4"
-                      >
-                        {t.gallery.teaserLink} →
-                      </a>
-                    </p>
-                  )}
-                </StaggerItem>
-              ))}
+                                <div className="min-w-0 flex-1">
+                                  <div className="flex items-start justify-between gap-3">
+                                    <h4 className="font-grotesk text-[14px] font-semibold leading-snug text-[var(--ink-strong)]">
+                                      {item.title}
+                                    </h4>
+                                    <span
+                                      className={`shrink-0 rounded-full border px-2 py-0.5 font-mono text-[8px] uppercase tracking-[0.1em] text-[var(--muted)] ${
+                                        item.planned
+                                          ? "border-dashed border-[var(--line-strong)]"
+                                          : "border-[var(--line)]"
+                                      }`}
+                                    >
+                                      {item.tag}
+                                    </span>
+                                  </div>
+                                  <p className="mt-1 line-clamp-2 text-[12px] leading-[1.55] text-[var(--muted)]">
+                                    {item.body}
+                                  </p>
+                                </div>
+                              </li>
+                            );
+                          })}
+                        </ol>
+                      ) : (
+                        <p className="border-b border-[var(--line)] py-3 text-[12px] leading-relaxed text-[var(--muted)]">
+                          {t.timeline.plannedHint}{" "}
+                          <a
+                            href={GALLERY_URL}
+                            className="font-mono text-[9px] uppercase tracking-[0.1em] text-[var(--accent)] underline decoration-[var(--line-strong)] underline-offset-4"
+                          >
+                            {t.gallery.teaserLink} →
+                          </a>
+                        </p>
+                      )}
+                    </details>
+                  </StaggerItem>
+                );
+              })}
             </Stagger>
           </div>
         </section>
