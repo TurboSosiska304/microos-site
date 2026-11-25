@@ -494,7 +494,7 @@ const en = {
     github: "GitHub release",
     progs: "Programs repository",
     assets: [
-      { name: "MicroOS-2.0.0-uefi.img", note: "the stick of a machine of UEFI only: dd and boot", size: "64 MiB" },
+      { name: "MicroOS-2.0.0-uefi.img", note: "the stick of a machine of UEFI only: dd and boot", size: "90 MiB" },
       { name: "MicroOS-2.0.0.iso", note: "one image for a CD and a stick, a BIOS and a firmware", size: "17 MiB" },
       { name: "MicroOS-2.0.0.bin", note: "the board, one image at 0x0", size: "1088 KiB" },
       { name: "MicroOS-x86_64-2.0.0.tar.gz", note: "the whole x86-64 machine: kernel, loader, disk and run.sh", size: "4.3 MiB" },
@@ -1012,7 +1012,7 @@ const ru: Dictionary = {
     github: "Релиз на GitHub",
     progs: "Репозиторий программ",
     assets: [
-      { name: "MicroOS-2.0.0-uefi.img", note: "флешка машины с одним UEFI: dd и загрузка", size: "64 MiB" },
+      { name: "MicroOS-2.0.0-uefi.img", note: "флешка машины с одним UEFI: dd и загрузка", size: "90 MiB" },
       { name: "MicroOS-2.0.0.iso", note: "один образ для CD и флешки, BIOS и прошивки", size: "17 MiB" },
       { name: "MicroOS-2.0.0.bin", note: "плата, один образ по адресу 0x0", size: "1088 KiB" },
       { name: "MicroOS-x86_64-2.0.0.tar.gz", note: "вся машина x86-64: ядро, загрузчик, диск и run.sh", size: "4.3 MiB" },
