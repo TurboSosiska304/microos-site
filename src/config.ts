@@ -24,17 +24,17 @@ export const LICENSE_URL = `${REPO_URL}/blob/mainline/LICENSE`;
 export const PROGS_URL = "https://turbososiska304.github.io/microos-progs/";
 export const PROGS_REPO_URL = `https://github.com/${GITHUB_USER}/microos-progs`;
 
-export const RELEASE_TAG = "v1.9.0";
+export const RELEASE_TAG = "v2.0.0";
 export const RELEASE_URL = `${REPO_URL}/releases/tag/${RELEASE_TAG}`;
 // The first image of the release is the bootable CD of the x86-64 machine:
 // a person downloads it, writes it to a stick or a disc and starts the machine
 // of his own. The image of the board is in the list below, where it belongs.
-export const DOWNLOAD_URL = `${REPO_URL}/releases/download/${RELEASE_TAG}/MicroOS-1.9.0-uefi.img`;
-export const X86_URL = `${REPO_URL}/releases/download/${RELEASE_TAG}/MicroOS-x86_64-1.9.0.tar.gz`;
+export const DOWNLOAD_URL = `${REPO_URL}/releases/download/${RELEASE_TAG}/MicroOS-2.0.0-uefi.img`;
+export const X86_URL = `${REPO_URL}/releases/download/${RELEASE_TAG}/MicroOS-x86_64-2.0.0.tar.gz`;
 
 export const OG_IMAGE_URL = `${SITE_URL}og.png`;
 
-export const version = "1.9.0";
-export const stableVersion = "1.9.0";
-export const releaseDate = "23 Nov 2026";
-export const kernelContract = "1.9";
+export const version = "2.0.0";
+export const stableVersion = "2.0.0";
+export const releaseDate = "25 Nov 2026";
+export const kernelContract = "1.15";

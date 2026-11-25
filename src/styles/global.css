@@ -1010,3 +1010,41 @@ body {
     transform: none;
   }
 }
+
+/*
+ * The painting of the release. A frame, a caption, no movement: the work is
+ * of 1913 and in the public domain (CREDITS.md), and the card it replaced was
+ * a drawing of a board that said nothing the page did not say in words.
+ */
+.kin-art {
+  margin: 0;
+}
+
+.kin-art__frame {
+  padding: 9px;
+  border-radius: 8px;
+  border: 1px solid var(--line-strong);
+  background: var(--panel);
+  box-shadow: 0 30px 60px -34px rgba(0, 0, 0, 0.85);
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.5s ease;
+}
+
+.kin-art:hover .kin-art__frame {
+  transform: translateY(-3px);
+  box-shadow: 0 38px 70px -34px rgba(0, 0, 0, 0.9);
+}
+
+.kin-art__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kin-art:hover .kin-art__frame {
+    transform: none;
+  }
+}

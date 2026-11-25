@@ -1,6 +1,6 @@
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import type { ReactNode } from "react";
-import { BoardGlyph } from "../components/BoardGlyph";
+import compositionVii from "../assets/composition-vii-1913.jpg";
 import { ConsoleDemo } from "../components/ConsoleDemo";
 import { Reveal, Stagger, StaggerItem } from "../components/Reveal";
 import { ThemeToggle } from "../components/ThemeToggle";
@@ -270,41 +270,44 @@ export default function KineticPage() {
               style={reduce ? undefined : { y: stackY }}
               className="relative lg:col-span-5"
               role="group"
-              aria-label={t.ui.stackLabel}
+              aria-label={t.hero.art.alt}
             >
-              <div className="kin-stack">
-                <div className="kin-stack__inner">
-                  <div className="kin-layer kin-layer--3" aria-hidden="true" />
-                  <div className="kin-layer kin-layer--2" aria-hidden="true" />
-                  <div className="kin-layer kin-layer--1 flex flex-col justify-between p-5 sm:p-6">
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--muted)]">
-                        {t.hero.stack.kicker}
-                      </span>
-                      <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--accent)]">
-                        v{version}
-                      </span>
-                    </div>
-                    <BoardGlyph
-                      label={t.ui.boardAlt}
-                      className="mx-auto w-[70%] max-w-[250px] sm:w-[64%]"
-                    />
-                    <div className="flex items-end justify-between gap-3">
-                      <div className="min-w-0">
-                        <p className="font-grotesk text-[15px] font-semibold leading-tight text-[var(--ink-strong)] sm:text-lg">
-                          {t.hero.stack.ports}
-                        </p>
-                        <p className="mt-1 font-mono text-[8px] uppercase tracking-[0.12em] text-[var(--faint)]">
-                          {t.hero.stack.sub}
-                        </p>
-                      </div>
-                      <span className="shrink-0 font-mono text-[9px] text-[var(--accent)]">
-                        {t.hero.stack.counter}
-                      </span>
-                    </div>
-                  </div>
+              <figure className="kin-art">
+                <div className="kin-art__frame">
+                  <img
+                    src={compositionVii}
+                    alt={t.hero.art.alt}
+                    width={1000}
+                    height={657}
+                    decoding="async"
+                    className="kin-art__img"
+                  />
                 </div>
-              </div>
+                <figcaption className="mt-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <p className="font-grotesk text-[15px] font-semibold leading-tight text-[var(--ink-strong)]">
+                      {t.hero.art.title}
+                    </p>
+                    <span className="shrink-0 rounded-full border border-[var(--line)] px-2.5 py-1 font-mono text-[8px] uppercase tracking-[0.12em] text-[var(--accent)]">
+                      {version}
+                    </span>
+                  </div>
+                  <p className="mt-1.5 font-mono text-[8.5px] uppercase tracking-[0.12em] text-[var(--faint)]">
+                    {t.hero.art.caption}
+                  </p>
+                  <p className="mt-2 max-w-sm text-[12.5px] leading-[1.6] text-[var(--muted)]">
+                    {t.hero.art.note}
+                  </p>
+                  <a
+                    href={t.hero.art.linkUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-2 inline-block font-mono text-[8.5px] uppercase tracking-[0.12em] text-[var(--accent)] underline decoration-[var(--line-strong)] underline-offset-4 transition-colors hover:text-[var(--ink)]"
+                  >
+                    {t.hero.art.link} ↗
+                  </a>
+                </figcaption>
+              </figure>
 
               <div className="mt-4 flex flex-wrap justify-center gap-2 lg:justify-start">
                 {[t.hero.stack.ring, t.hero.stack.exec, t.hero.stack.bare].map((badge) => (

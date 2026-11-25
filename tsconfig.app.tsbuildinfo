@@ -1,0 +1,1 @@
+{"root":["./src/App.tsx","./src/config.ts","./src/i18n.tsx","./src/main.tsx","./src/theme.tsx","./src/useVariant.ts","./src/vite-env.d.ts","./src/components/BoardGlyph.tsx","./src/components/ConsoleDemo.tsx","./src/components/Reveal.tsx","./src/components/ThemeToggle.tsx","./src/pages/KineticPage.tsx"],"version":"5.9.3"}
