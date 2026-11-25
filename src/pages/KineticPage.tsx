@@ -3,53 +3,22 @@ import type { ReactNode } from "react";
 import compositionVii from "../assets/composition-vii-1913.jpg";
 import { ConsoleDemo } from "../components/ConsoleDemo";
 import { Reveal, Stagger, StaggerItem } from "../components/Reveal";
-import { ThemeToggle } from "../components/ThemeToggle";
-import { VersionGallery } from "../components/VersionGallery";
+import SiteChrome from "../components/SiteChrome";
 import {
   DOWNLOAD_URL,
   DOCS_URL,
+  GALLERY_URL,
   LICENSE_URL,
   PROGS_URL,
   RELEASE_TAG,
   RELEASE_URL,
-  RELEASES_URL,
   REPO_URL,
   WIKI_DEV_URL,
   WIKI_URL,
   kernelContract,
   version,
 } from "../config";
-import { useLocale, type Locale } from "../i18n";
-import { useVariant } from "../useVariant";
-
-function LangToggle() {
-  const { locale, setLocale, t } = useLocale();
-  const options: Locale[] = ["en", "ru"];
-
-  return (
-    <div
-      className="flex items-center rounded-full border border-[var(--line-strong)] bg-[var(--panel)] p-0.5"
-      role="group"
-      aria-label={t.ui.langLabel}
-    >
-      {options.map((option) => (
-        <button
-          key={option}
-          type="button"
-          onClick={() => setLocale(option)}
-          aria-pressed={locale === option}
-          className={`rounded-full px-2 py-1 font-mono text-[9px] uppercase tracking-[0.08em] transition-colors ${
-            locale === option
-              ? "bg-[var(--accent)] text-[var(--accent-ink)]"
-              : "text-[var(--muted)] hover:text-[var(--ink)]"
-          }`}
-        >
-          {option}
-        </button>
-      ))}
-    </div>
-  );
-}
+import { useLocale } from "../i18n";
 
 function Marquee() {
   const { t } = useLocale();
@@ -84,7 +53,6 @@ function SectionKicker({ children }: { children: ReactNode }) {
 }
 
 export default function KineticPage() {
-  useVariant("kinetic");
   const { t } = useLocale();
   const reduce = useReducedMotion();
   const { scrollY } = useScroll();
@@ -92,72 +60,7 @@ export default function KineticPage() {
   const glowY = useTransform(scrollY, [0, 800], [0, reduce ? 0 : -40]);
 
   return (
-    <div className="v-kinetic kin-root min-h-screen overflow-x-clip">
-      <a
-        href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-[var(--accent)] focus:px-4 focus:py-2 focus:font-grotesk focus:text-xs focus:text-[var(--accent-ink)]"
-      >
-        {t.ui.skip}
-      </a>
-
-      <header className="relative z-40 border-b border-[var(--line)] bg-[color-mix(in_srgb,var(--bg)_78%,transparent)] backdrop-blur-xl">
-        <div className="mx-auto flex h-[68px] max-w-[1320px] items-center gap-5 px-5 md:px-10">
-          <a href="#main" className="group flex shrink-0 items-center gap-2.5">
-            <span
-              aria-hidden="true"
-              className="relative grid h-8 w-8 place-items-center rounded-xl bg-[var(--accent)] font-grotesk text-sm font-bold text-[var(--accent-ink)] transition-transform duration-300 group-hover:rotate-6"
-            >
-              M
-            </span>
-            <span className="font-grotesk text-[15px] font-semibold tracking-[-0.02em] text-[var(--ink-strong)]">
-              micro<span className="text-[var(--accent)]">/</span>os
-            </span>
-          </a>
-
-          <nav className="hidden items-center gap-5 lg:flex" aria-label={t.nav.menu}>
-            {[
-              [t.nav.philosophy, "#philosophy"],
-              [t.nav.machines, "#machines"],
-              [t.nav.architectures, "#architectures"],
-              [t.nav.timeline, "#timeline"],
-              [t.nav.release, "#release"],
-              [t.nav.gallery, "#gallery"],
-            ].map(([label, href]) => (
-              <a
-                key={href}
-                href={href}
-                className="kin-nav-link whitespace-nowrap font-grotesk text-[12.5px] font-medium text-[var(--muted)] hover:text-[var(--ink)]"
-              >
-                {label}
-              </a>
-            ))}
-            <a
-              href={WIKI_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="kin-nav-link hidden whitespace-nowrap font-grotesk text-[12.5px] font-medium text-[var(--muted)] hover:text-[var(--ink)] lg:inline"
-            >
-              {t.nav.wiki} ↗
-            </a>
-          </nav>
-
-          <div className="ml-auto flex items-center gap-2 sm:gap-2.5">
-            <LangToggle />
-            <ThemeToggle labels={{ toLight: t.ui.themeToLight, toDark: t.ui.themeToDark }} />
-            <div className="hidden sm:block">
-              <motion.a
-                href={DOWNLOAD_URL}
-                whileHover={reduce ? undefined : { y: -2 }}
-                whileTap={reduce ? undefined : { scale: 0.97 }}
-                className="kin-pill whitespace-nowrap !px-4 !py-2 !text-[12px]"
-              >
-                {t.nav.download} {version}
-              </motion.a>
-            </div>
-          </div>
-        </div>
-      </header>
-
+    <SiteChrome>
       <main id="main">
         {/* Hero */}
         <section className="relative overflow-hidden">
@@ -551,36 +454,73 @@ export default function KineticPage() {
               </p>
             </Reveal>
 
-            <Stagger className="mt-12" gap={0.08}>
-              <ol className="ml-2 border-l border-[var(--line-strong)] xl:ml-0 xl:grid xl:grid-cols-5 xl:border-l-0">
-                {t.timeline.items.map((item) => (
-                  <li
-                    key={item.version}
-                    className="relative border-l-0 pb-8 pl-6 last:pb-0 xl:border-t xl:border-[var(--line-strong)] xl:pb-8 xl:pl-0 xl:pr-5 xl:pt-7"
-                  >
-                    <span
-                      aria-hidden="true"
-                      className={`absolute -left-[5px] top-1.5 h-2.5 w-2.5 rounded-full xl:-top-[5px] xl:left-0 ${
-                        item.planned
-                          ? "border border-dashed border-[var(--accent)] bg-[var(--bg)]"
-                          : "bg-[var(--accent)] shadow-[0_0_12px_var(--accent)]"
-                      }`}
-                    />
-                    <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[var(--accent)]">
-                      {item.version}
-                    </p>
-                    <h3 className="mt-2 font-grotesk text-[17px] font-semibold leading-tight text-[var(--ink-strong)]">
-                      {item.title}
+            <Stagger className="mt-12 space-y-10" gap={0.08}>
+              {t.timeline.groups.map((group) => (
+                <StaggerItem key={group.id}>
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-[var(--line-strong)] pb-2.5">
+                    <h3 className="font-grotesk text-[15px] font-semibold uppercase tracking-[-0.01em] text-[var(--ink-strong)]">
+                      {group.label}
                     </h3>
-                    <p className="mt-2 max-w-xs text-[12.5px] leading-[1.65] text-[var(--muted)]">
-                      {item.body}
+                    <p className="max-w-sm text-[11.5px] leading-snug text-[var(--muted)]">
+                      {group.note}
                     </p>
-                    <span className="mt-3 inline-block rounded-full border border-[var(--line)] px-2 py-0.5 font-mono text-[8px] uppercase tracking-[0.1em] text-[var(--muted)]">
-                      {item.tag}
-                    </span>
-                  </li>
-                ))}
-              </ol>
+                  </div>
+                  {group.items.length > 0 ? (
+                    <ol className="mt-1">
+                      {group.items.map((item) => {
+                        const current = item.version === "2.0";
+                        return (
+                          <li
+                            key={item.version}
+                            className={`relative flex gap-x-3 border-b border-[var(--line)] py-3 pl-4 last:border-b-0 sm:gap-x-4 ${
+                              current ? "border-l-2 border-l-[var(--accent)] pl-3" : ""
+                            }`}
+                          >
+                            {current && (
+                              <span
+                                aria-hidden="true"
+                                className="absolute -left-1 top-4 h-2.5 w-2.5 rounded-full bg-[var(--accent)] shadow-[0_0_12px_var(--accent)]"
+                              />
+                            )}
+                            <span className="w-14 shrink-0 font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--accent)]">
+                              v{item.version}
+                            </span>
+                            <div className="min-w-0 flex-1">
+                              <div className="flex items-start justify-between gap-3">
+                                <h4 className="font-grotesk text-[14px] font-semibold leading-snug text-[var(--ink-strong)]">
+                                  {item.title}
+                                </h4>
+                                <span
+                                  className={`shrink-0 rounded-full border px-2 py-0.5 font-mono text-[8px] uppercase tracking-[0.1em] text-[var(--muted)] ${
+                                    item.planned
+                                      ? "border-dashed border-[var(--line-strong)]"
+                                      : "border-[var(--line)]"
+                                  }`}
+                                >
+                                  {item.tag}
+                                </span>
+                              </div>
+                              <p className="mt-1 line-clamp-2 text-[12px] leading-[1.55] text-[var(--muted)]">
+                                {item.body}
+                              </p>
+                            </div>
+                          </li>
+                        );
+                      })}
+                    </ol>
+                  ) : (
+                    <p className="border-b border-[var(--line)] py-3 text-[12px] leading-relaxed text-[var(--muted)]">
+                      {t.timeline.plannedHint}{" "}
+                      <a
+                        href={GALLERY_URL}
+                        className="font-mono text-[9px] uppercase tracking-[0.1em] text-[var(--accent)] underline decoration-[var(--line-strong)] underline-offset-4"
+                      >
+                        {t.gallery.teaserLink} →
+                      </a>
+                    </p>
+                  )}
+                </StaggerItem>
+              ))}
             </Stagger>
           </div>
         </section>
@@ -894,91 +834,28 @@ export default function KineticPage() {
           </Reveal>
         </section>
 
-        {/* The gallery */}
-        <VersionGallery />
-      </main>
-
-      <footer className="border-t border-[var(--line)] bg-[var(--bg-soft)]">
-        <div className="mx-auto max-w-[1320px] px-5 py-12 md:px-10">
-          <div className="grid gap-10 md:grid-cols-12">
-            <div className="md:col-span-5">
-              <a
-                href="#main"
-                className="font-grotesk text-[clamp(2.2rem,5vw,3.4rem)] font-bold uppercase leading-none tracking-[-0.05em] text-[var(--ink-strong)] transition-colors hover:text-[var(--accent)]"
-              >
-                Micro<span className="text-[var(--accent)]">/</span>OS
-              </a>
-              <p className="mt-4 max-w-sm font-grotesk text-[13.5px] leading-relaxed text-[var(--muted)]">
-                {t.footer.tagline}
-              </p>
-              <p className="mt-5 font-mono text-[9px] uppercase tracking-[0.12em] text-[var(--muted)]">
-                {t.footer.contract} {kernelContract} · MIT · 2026
-              </p>
-            </div>
-
-            <div className="md:col-span-3 md:col-start-7">
-              <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-[var(--muted)]">
-                {t.footer.project}
-              </p>
-              <ul className="mt-4 space-y-2.5 font-grotesk text-[13.5px]">
-                {[
-                  [t.footer.github, REPO_URL],
-                  [t.footer.releases, RELEASES_URL],
-                  [t.footer.docs, DOCS_URL],
-                  [t.footer.license, LICENSE_URL],
-                ].map(([label, href]) => (
-                  <li key={label}>
-                    <a
-                      href={href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-[var(--muted)] transition-colors hover:text-[var(--accent)]"
-                    >
-                      {label} ↗
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="md:col-span-3">
-              <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-[var(--muted)]">
-                {t.footer.read}
-              </p>
-              <ul className="mt-4 space-y-2.5 font-grotesk text-[13.5px]">
-                {[
-                  [t.footer.wikiStable, WIKI_URL],
-                  [t.footer.wikiDev, WIKI_DEV_URL],
-                  [t.footer.github, REPO_URL],
-                ].map(([label, href]) => (
-                  <li key={label}>
-                    <a
-                      href={href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-[var(--muted)] transition-colors hover:text-[var(--accent)]"
-                    >
-                      {label} ↗
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          <div className="mt-10 flex flex-wrap items-center justify-between gap-3 border-t border-[var(--line)] pt-5">
-            <p className="font-mono text-[9px] uppercase tracking-[0.12em] text-[var(--muted)]">
-              {t.footer.built} · {t.footer.copyright}
-            </p>
+        {/* The gallery is a page of its own; this is only a one-line invitation. */}
+        <section className="mx-auto max-w-[1320px] px-5 pb-20 md:px-10 md:pb-28">
+          <Reveal>
             <a
-              href="#main"
-              className="rounded-full border border-[var(--line)] px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.12em] text-[var(--muted)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+              href={GALLERY_URL}
+              className="group flex items-center justify-between gap-4 border-t border-[var(--line)] pt-5"
             >
-              {t.footer.back} ↑
+              <span className="min-w-0">
+                <span className="block font-grotesk text-[15px] font-semibold text-[var(--ink-strong)] transition-colors group-hover:text-[var(--accent)]">
+                  {t.gallery.teaserTitle}
+                </span>
+                <span className="mt-0.5 block truncate text-[12px] text-[var(--muted)]">
+                  {t.gallery.teaserLead}
+                </span>
+              </span>
+              <span className="shrink-0 font-mono text-[9px] uppercase tracking-[0.12em] text-[var(--accent)]">
+                {t.gallery.teaserLink} →
+              </span>
             </a>
-          </div>
-        </div>
-      </footer>
-    </div>
+          </Reveal>
+        </section>
+      </main>
+    </SiteChrome>
   );
 }

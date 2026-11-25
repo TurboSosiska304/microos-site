@@ -9,6 +9,8 @@ export const GITHUB_USER = "TurboSosiska304";
 export const GITHUB_HOST = "turbososiska304.github.io";
 
 export const SITE_BASE = "/microos-site/";
+// The gallery is its own page, not an anchor on the home page.
+export const GALLERY_URL = `${SITE_BASE}gallery/`;
 export const SITE_ORIGIN = `https://${GITHUB_HOST}`;
 export const SITE_URL = `${SITE_ORIGIN}${SITE_BASE}`;
 export const SITE_LASTMOD = "2026-11-23";

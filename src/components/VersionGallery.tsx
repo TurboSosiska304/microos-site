@@ -80,7 +80,10 @@ export function VersionGallery() {
   const { t } = useLocale();
 
   return (
-    <section id="gallery" className="mx-auto max-w-[1320px] px-5 pb-20 md:px-10 md:pb-28">
+    <section
+      id="gallery"
+      className="mx-auto max-w-[1320px] px-5 pb-20 pt-12 md:px-10 md:pb-28 md:pt-16"
+    >
       <Reveal className="max-w-3xl">
         <p className="font-mono text-[9.5px] uppercase tracking-[0.2em] text-[var(--accent)]">
           {t.gallery.kicker}

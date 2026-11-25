@@ -2,8 +2,10 @@
 
 The final landing page for **Micro OS**, a portable kernel for small machines.
 It is the kinetic direction chosen from the three concepts, now the home page
-at `/` and at `/kinetic`. `/terminal` and `/editorial` remain in the repository
-as the two losing directions, split out of the main bundle.
+at `/` and at `/kinetic`. The version gallery has its own page at
+`/microos-site/gallery/`; the home page keeps a one-line invitation.
+`/terminal` and `/editorial` remain in the repository as the two losing
+directions, split out of the main bundle.
 
 ## Stack
 
@@ -83,7 +85,9 @@ branch. `DEPLOY_BRANCH` overrides the branch. A GitHub Actions workflow in
 `peaceiris/actions-gh-pages`; it has not been run.
 
 The build also writes `dist/404.html` (a copy of the SPA entry) so a deep link
-such as `/microos-site/kinetic` boots the router on GitHub Pages.
+such as `/microos-site/kinetic` boots the page on GitHub Pages. The gallery is
+a real path: `dist/gallery/index.html` answers 200 at
+`/microos-site/gallery/`.
 
 ## What to check
 
