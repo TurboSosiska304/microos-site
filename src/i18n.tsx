@@ -28,6 +28,7 @@ const en = {
     architectures: "Architectures",
     timeline: "Path",
     release: "Release",
+    gallery: "Gallery",
     wiki: "Wiki",
     download: "Get",
     menu: "Sections",
@@ -510,6 +511,18 @@ const en = {
       "The image of UEFI is the machine on a stick: write it with dd, turn Secure Boot off and start \"UEFI: the stick\" from the menu - a laptop of these years has no BIOS at all. The ISO is the same machine for a CD, for a BIOS and for a stick. The tar unpacks into a directory and its run.sh starts the machine under QEMU. flash.sh writes the image of the board at 0x0 and the NVS stays. The release keeps no executable bit - chmod +x first.",
     license: "license",
   },
+  gallery: {
+    kicker: "09 — the gallery",
+    titleA: "Every version",
+    titleB: "has a name.",
+    lead: "A release is named after a painting. The stable cards show the work that gave the name; the planned ones carry the name and the painter, but no image until its licence is checked.",
+    statusStable: "Stable",
+    statusPlan: "Planned",
+    artworkLabel: "Artwork",
+    releaseLabel: "Release",
+    plannedNote: "Artwork: image not chosen yet",
+    source: "wikimedia commons",
+  },
   footer: {
     tagline:
       "A Linux-like kernel for small machines. One portable core, two machines, a test substrate, and a boundary the build checks.",
@@ -546,6 +559,7 @@ const ru: Dictionary = {
     architectures: "Архитектуры",
     timeline: "Путь",
     release: "Релиз",
+    gallery: "Галерея",
     wiki: "Вики",
     download: "Скачать",
     menu: "Разделы",
@@ -1027,6 +1041,18 @@ const ru: Dictionary = {
     flash:
       "Образ UEFI — это машина на флешке: запишите его через dd, выключите Secure Boot и выберите в меню \"UEFI: the stick\" — у ноутбука этих лет BIOS нет вовсе. ISO — та же машина для CD, для BIOS и для флешки. tar распаковывается в каталог, и его run.sh запускает машину под QEMU. flash.sh пишет образ платы по адресу 0x0, NVS остаётся. В релизе нет бита исполнения — сначала chmod +x.",
     license: "лицензия",
+  },
+  gallery: {
+    kicker: "09 — галерея",
+    titleA: "У каждой версии",
+    titleB: "своё имя.",
+    lead: "Релиз назван в честь картины. В стабильных карточках — работа, которая дала имя; в запланированных — имя и художник, но без изображения, пока не проверена лицензия.",
+    statusStable: "Стабильный",
+    statusPlan: "План",
+    artworkLabel: "Картина",
+    releaseLabel: "Релиз",
+    plannedNote: "Картина: изображение ещё не выбрано",
+    source: "wikimedia commons",
   },
   footer: {
     tagline:

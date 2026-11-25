@@ -4,6 +4,7 @@ import compositionVii from "../assets/composition-vii-1913.jpg";
 import { ConsoleDemo } from "../components/ConsoleDemo";
 import { Reveal, Stagger, StaggerItem } from "../components/Reveal";
 import { ThemeToggle } from "../components/ThemeToggle";
+import { VersionGallery } from "../components/VersionGallery";
 import {
   DOWNLOAD_URL,
   DOCS_URL,
@@ -120,6 +121,7 @@ export default function KineticPage() {
               [t.nav.architectures, "#architectures"],
               [t.nav.timeline, "#timeline"],
               [t.nav.release, "#release"],
+              [t.nav.gallery, "#gallery"],
             ].map(([label, href]) => (
               <a
                 key={href}
@@ -891,6 +893,9 @@ export default function KineticPage() {
             </div>
           </Reveal>
         </section>
+
+        {/* The gallery */}
+        <VersionGallery />
       </main>
 
       <footer className="border-t border-[var(--line)] bg-[var(--bg-soft)]">
