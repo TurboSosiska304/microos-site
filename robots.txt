@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://turbososiska304.github.io/microos-site/sitemap.xml
